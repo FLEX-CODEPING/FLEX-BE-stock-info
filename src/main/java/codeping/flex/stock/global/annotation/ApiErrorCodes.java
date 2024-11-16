@@ -11,6 +11,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ApiErrorCodes {
-	UserErrorCode[] userErrors();
-	StockErrorCode[] stockErrors();
+	UserErrorCode[] userErrors() default {};
+	StockErrorCode[] stockErrors() default {};
 }
