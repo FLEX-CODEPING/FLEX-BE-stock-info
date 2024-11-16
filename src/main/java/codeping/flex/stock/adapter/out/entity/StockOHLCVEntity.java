@@ -1,5 +1,6 @@
 package codeping.flex.stock.adapter.out.entity;
 
+import codeping.flex.stock.adapter.out.entity.pk.StockIDEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
