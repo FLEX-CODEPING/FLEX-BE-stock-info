@@ -7,7 +7,6 @@ spring:
       - mysql.yml
       - redis.yml
       - swagger.yml
-      - env.properties
   application:
     name: stock-service
 

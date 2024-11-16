@@ -1,18 +1,12 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       hibernate:
         default_batch_fetch_size: 100
         format_sql: true
         show_sql: true
-#    spring.datasource.hikari.connection-timeout=30000
-#    spring.datasource.hikari.minimum-idle=5
-#    spring.datasource.hikari.maximum-pool-size=10
-#    spring.datasource.hikari.idle-timeout=600000
-#    spring.datasource.hikari.validation-timeout=5000
-#    spring.datasource.hikari.connection-test-query=SELECT 1
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -32,7 +26,7 @@ spring:
     open-in-view: false
     generate-ddl: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
     properties:
       hibernate:
