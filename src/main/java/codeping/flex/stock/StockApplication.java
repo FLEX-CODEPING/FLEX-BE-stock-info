@@ -1,13 +1,13 @@
-package codeping.flex.investment;
+package codeping.flex.stock;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class InvestmentApplication {
+public class StockApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(InvestmentApplication.class, args);
+        SpringApplication.run(StockApplication.class, args);
     }
 
 }

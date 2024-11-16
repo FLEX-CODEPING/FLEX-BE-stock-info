@@ -3,12 +3,16 @@ spring.profiles.active: local
 spring:
   config:
     import:
+      - eureka.yml
       - mysql.yml
+      - redis.yml
+      - swagger.yml
+      - env.properties
   application:
-    name: investment-service
+    name: stock-service
 
 server:
-  port: ${APPLICATION_PORT:8083}
+  port: ${APPLICATION_PORT:8084}
   tomcat:
     max-connections: 10000
     threads:
