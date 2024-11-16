@@ -7,12 +7,11 @@ spring:
       - mysql.yml
       - redis.yml
       - swagger.yml
-      - env.properties
   application:
     name: stock-service
 
 server:
-  port: ${APPLICATION_PORT:8084}
+  port: ${APPLICATION_PORT:8083}
   tomcat:
     max-connections: 10000
     threads:
