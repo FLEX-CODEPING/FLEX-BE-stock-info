@@ -1,4 +1,4 @@
-package codeping.flex.stock.adapter.out.mapper;
+package codeping.flex.stock.application.mapper;
 
 import codeping.flex.stock.application.port.in.dto.GetStockMarketCapInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockOHLCVInfoDto;
