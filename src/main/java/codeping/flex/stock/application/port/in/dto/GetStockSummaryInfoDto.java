@@ -11,7 +11,7 @@ public class GetStockSummaryInfoDto {
     private String stockcode;
     @Schema(description = "회사명")
     private String corpName;
-    @Schema(description = "회사 로고 url")
+    @Schema(description = "로고 url")
     private String symbolImageUrl;
     @Schema(description = "관심 종목 여부")
     private Boolean isInterested;
