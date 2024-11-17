@@ -1,4 +1,4 @@
-package codeping.flex.stock.global.annotation;
+package codeping.flex.stock.global.annotation.swagger;
 
 import codeping.flex.stock.global.StockErrorCode;
 import codeping.flex.stock.global.UserErrorCode;

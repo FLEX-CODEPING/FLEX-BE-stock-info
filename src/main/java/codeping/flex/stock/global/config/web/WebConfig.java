@@ -1,6 +1,6 @@
 package codeping.flex.stock.global.config.web;
 
-import codeping.flex.stock.global.annotation.PassportResolver;
+import codeping.flex.stock.global.annotation.passport.PassportResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;

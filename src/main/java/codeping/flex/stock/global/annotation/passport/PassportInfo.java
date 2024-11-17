@@ -1,4 +1,4 @@
-package codeping.flex.stock.global.common.response;
+package codeping.flex.stock.global.annotation.passport;
 
 public record PassportInfo(
     Long userId,
