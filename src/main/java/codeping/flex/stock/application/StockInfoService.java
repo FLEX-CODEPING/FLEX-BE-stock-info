@@ -15,14 +15,14 @@ import codeping.flex.stock.application.port.out.LoadStockMarketCapPort;
 import codeping.flex.stock.application.port.out.LoadStockOHLCVPort;
 import codeping.flex.stock.application.port.out.LoadStockPort;
 import codeping.flex.stock.domain.*;
+import codeping.flex.stock.global.annotation.architecture.ApplicationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
 
-@Service
+@ApplicationService
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class StockInfoService implements StockInfoUsecase {
