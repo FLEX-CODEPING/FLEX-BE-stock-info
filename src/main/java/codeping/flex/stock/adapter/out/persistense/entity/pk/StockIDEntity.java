@@ -1,4 +1,4 @@
-package codeping.flex.stock.adapter.out.entity.pk;
+package codeping.flex.stock.adapter.out.persistense.entity.pk;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
