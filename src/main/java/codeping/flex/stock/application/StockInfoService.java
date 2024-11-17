@@ -36,7 +36,7 @@ public class StockInfoService implements StockInfoUsecase {
     public GetStockSummaryInfoDto getStockSummaryInfo(String stockcode) {
         Stock stock = StockMapper.toDomain(loadStockPort.loadStock(stockcode));
         StockImage stockImage = StockImageMapper.toDomain(loadStockImagePort.loadStockImage(stockcode));
-        return GetStockInfoMapper.toGetStockInfoDto(stock, stockImage.getImageUrl());
+        return GetStockInfoMapper.toGetStockInfoDto(stock, stockImage);
     }
 
     @Override

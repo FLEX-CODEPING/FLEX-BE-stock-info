@@ -4,6 +4,7 @@ import codeping.flex.stock.application.port.in.dto.GetStockMarketCapInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockOHLCVInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockSummaryInfoDto;
 import codeping.flex.stock.domain.Stock;
+import codeping.flex.stock.domain.StockImage;
 import codeping.flex.stock.domain.StockMarketCap;
 import codeping.flex.stock.domain.StockOHLCV;
 
@@ -12,11 +13,11 @@ public class GetStockInfoMapper {
         throw new IllegalStateException("Util Class");
     }
 
-    public static GetStockSummaryInfoDto toGetStockInfoDto(Stock stock, String symbolImageUrl) {
+    public static GetStockSummaryInfoDto toGetStockInfoDto(Stock stock, StockImage stockImage) {
         return GetStockSummaryInfoDto.builder()
                 .stockcode(stock.getStockcode())
                 .corpName(stock.getCorpName())
-                .symbolImageUrl(symbolImageUrl)
+                .symbolImageUrl(stockImage == null ? null : stockImage.getImageUrl())
                 .isInterested(null)
                 .build();
     }
