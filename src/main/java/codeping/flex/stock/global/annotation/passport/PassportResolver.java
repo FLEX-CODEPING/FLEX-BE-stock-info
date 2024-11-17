@@ -1,6 +1,5 @@
-package codeping.flex.stock.global.annotation;
+package codeping.flex.stock.global.annotation.passport;
 
-import codeping.flex.stock.global.common.response.PassportInfo;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
@@ -16,7 +15,7 @@ public class PassportResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.hasParameterAnnotation(codeping.flex.stock.global.annotation.Passport.class)
+        return parameter.hasParameterAnnotation(Passport.class)
                 && PassportInfo.class.isAssignableFrom(parameter.getParameterType());
     }
 

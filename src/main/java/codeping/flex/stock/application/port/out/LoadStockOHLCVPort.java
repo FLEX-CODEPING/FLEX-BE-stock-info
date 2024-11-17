@@ -1,8 +1,8 @@
 package codeping.flex.stock.application.port.out;
 
-import codeping.flex.stock.adapter.out.entity.StockOHLCVEntity;
-import codeping.flex.stock.adapter.out.entity.pk.StockIDEntity;
+import codeping.flex.stock.adapter.out.persistense.entity.StockOHLCVEntity;
+import codeping.flex.stock.adapter.out.persistense.entity.pk.StockIDEntity;
 
 public interface LoadStockOHLCVPort {
-    StockOHLCVEntity getStockOHLCV(StockIDEntity stockID);
+    StockOHLCVEntity loadStockOHLCV(StockIDEntity stockID);
 }

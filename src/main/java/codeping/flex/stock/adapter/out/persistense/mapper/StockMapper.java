@@ -1,6 +1,6 @@
-package codeping.flex.stock.adapter.out.mapper;
+package codeping.flex.stock.adapter.out.persistense.mapper;
 
-import codeping.flex.stock.adapter.out.entity.StockEntity;
+import codeping.flex.stock.adapter.out.persistense.entity.StockEntity;
 import codeping.flex.stock.domain.Stock;
 
 public class StockMapper {

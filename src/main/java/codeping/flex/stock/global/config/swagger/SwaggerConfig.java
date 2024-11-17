@@ -2,7 +2,7 @@ package codeping.flex.stock.global.config.swagger;
 
 import codeping.flex.stock.global.StockErrorCode;
 import codeping.flex.stock.global.UserErrorCode;
-import codeping.flex.stock.global.annotation.ApiErrorCodes;
+import codeping.flex.stock.global.annotation.swagger.ApiErrorCodes;
 import codeping.flex.stock.global.common.response.ApplicationResponse;
 import codeping.flex.stock.global.common.response.code.BaseErrorCode;
 import io.swagger.v3.oas.models.Components;

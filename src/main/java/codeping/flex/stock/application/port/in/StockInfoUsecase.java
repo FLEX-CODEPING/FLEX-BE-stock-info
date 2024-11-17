@@ -5,7 +5,7 @@ import codeping.flex.stock.application.port.in.dto.GetStockOHLCVInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockSummaryInfoDto;
 
 public interface StockInfoUsecase {
-    GetStockSummaryInfoDto getStockInfo(String stockcode);
+    GetStockSummaryInfoDto getStockSummaryInfo(String stockcode);
 
     GetStockOHLCVInfoDto getStockOHLCVInfo(String stockcode);
 

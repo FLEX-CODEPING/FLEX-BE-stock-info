@@ -1,6 +1,6 @@
-package codeping.flex.stock.adapter.out.mapper;
+package codeping.flex.stock.adapter.out.persistense.mapper;
 
-import codeping.flex.stock.adapter.out.entity.pk.StockIDEntity;
+import codeping.flex.stock.adapter.out.persistense.entity.pk.StockIDEntity;
 import codeping.flex.stock.domain.StockID;
 
 public class StockIDMapper {

@@ -1,4 +1,4 @@
-package codeping.flex.stock.global.annotation;
+package codeping.flex.stock.global.annotation.passport;
 
 import java.lang.annotation.*;
 
