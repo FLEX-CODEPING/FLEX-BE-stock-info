@@ -7,8 +7,7 @@ import codeping.flex.stock.adapter.out.persistense.mapper.StockMapper;
 import codeping.flex.stock.adapter.out.persistense.mapper.StockOHLCVMapper;
 import codeping.flex.stock.application.mapper.GetStockInfoMapper;
 import codeping.flex.stock.application.port.in.StockInfoUsecase;
-import codeping.flex.stock.application.port.in.dto.GetStockMarketCapInfoDto;
-import codeping.flex.stock.application.port.in.dto.GetStockOHLCVInfoDto;
+import codeping.flex.stock.application.port.in.dto.GetStockPreMarketInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockSummaryInfoDto;
 import codeping.flex.stock.application.port.out.LoadStockImagePort;
 import codeping.flex.stock.application.port.out.LoadStockMarketCapPort;
@@ -40,25 +39,18 @@ public class StockInfoService implements StockInfoUsecase {
     }
 
     @Override
-    public GetStockOHLCVInfoDto getStockOHLCVInfo(String stockcode) {
-        StockID stockID = toStockID(stockcode);
+    public GetStockPreMarketInfoDto getStockPreMarketInfo(String stockcode, LocalDate date) {
+        StockID stockID = toStockID(stockcode, date);
         StockIDEntity stockIDEntity = StockIDMapper.toEntity(stockID);
         StockOHLCV stockOHLCV = StockOHLCVMapper.toDomain(loadStockOHLCVPort.loadStockOHLCV(stockIDEntity));
-        return GetStockInfoMapper.toGetStockOHLCVInfoDto(stockOHLCV);
-    }
-
-    @Override
-    public GetStockMarketCapInfoDto getStockMarketCapInfo(String stockcode) {
-        StockID stockID = toStockID(stockcode);
-        StockIDEntity stockIDEntity = StockIDMapper.toEntity(stockID);
         StockMarketCap stockMarketCap = loadStockMarketCapPort.loadStockMarketCap(stockIDEntity);
-        return GetStockInfoMapper.toGetStockMarketCapInfoDto(stockMarketCap);
+        return GetStockInfoMapper.toGetStockPreMarketInfoDto(stockOHLCV, stockMarketCap);
     }
 
-    private StockID toStockID(String stockcode) {
+    private StockID toStockID(String stockcode, LocalDate date) {
         return StockID.builder()
                 .stockcode(stockcode)
-                .date(LocalDate.now().minusDays(1))
+                .date(date)
                 .build();
     }
 }
