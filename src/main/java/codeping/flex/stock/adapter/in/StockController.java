@@ -1,8 +1,7 @@
 package codeping.flex.stock.adapter.in;
 
 import codeping.flex.stock.application.port.in.StockInfoUsecase;
-import codeping.flex.stock.application.port.in.dto.GetStockMarketCapInfoDto;
-import codeping.flex.stock.application.port.in.dto.GetStockOHLCVInfoDto;
+import codeping.flex.stock.application.port.in.dto.GetStockPreMarketInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockSummaryInfoDto;
 import codeping.flex.stock.global.StockErrorCode;
 import codeping.flex.stock.global.annotation.architecture.WebAdapter;
@@ -11,10 +10,10 @@ import codeping.flex.stock.global.common.response.ApplicationResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,17 +30,11 @@ public class StockController {
         return ApplicationResponse.onSuccess(stockUsecase.getStockSummaryInfo(stockcode));
     }
 
-    @GetMapping("/{stockcode}/ohlcv/preOpen")
-    @Operation(summary = "장전 시간 주식 ohlcv 조회", description = "장전 시간(오전 12~9시) 전일 주식 시가, 고가, 저가, 종가, 거래량,")
+    @GetMapping("/market/preOpen")
+    @Operation(summary = "장전 시간 주식 ohlcv & 시가총액 조회", description = "장전 시간(오전 12~9시) 전일 주식 시가, 고가, 저가, 종가, 거래량,")
     @ApiErrorCodes(stockErrors = {StockErrorCode.STOCK_OHLCV_NOT_FOUND})
-    public ApplicationResponse<GetStockOHLCVInfoDto> getStockOHLCVInfo(@PathVariable String stockcode) {
-        return ApplicationResponse.onSuccess(stockUsecase.getStockOHLCVInfo(stockcode));
+    public ApplicationResponse<GetStockPreMarketInfoDto> getStockMarketInfo(@RequestParam String stockcode, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
+        return ApplicationResponse.onSuccess(stockUsecase.getStockPreMarketInfo(stockcode, date));
     }
 
-    @GetMapping("/{stockcode}/marketCap/preOpen")
-    @Operation(summary = "장전 시간 시가총액 조회", description = "장전 시간장 (오전 12~9시) 시가 총액에 대한 정보를 조회합니다.")
-    @ApiErrorCodes(stockErrors = {StockErrorCode.STOCK_MARKET_CAP_NOT_FOUND})
-    public ApplicationResponse<GetStockMarketCapInfoDto> getStockMarketCapInfo(@PathVariable String stockcode) {
-        return ApplicationResponse.onSuccess(stockUsecase.getStockMarketCapInfo(stockcode));
-    }
 }

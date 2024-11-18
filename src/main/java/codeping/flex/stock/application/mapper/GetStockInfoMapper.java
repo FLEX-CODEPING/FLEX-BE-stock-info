@@ -1,7 +1,6 @@
 package codeping.flex.stock.application.mapper;
 
-import codeping.flex.stock.application.port.in.dto.GetStockMarketCapInfoDto;
-import codeping.flex.stock.application.port.in.dto.GetStockOHLCVInfoDto;
+import codeping.flex.stock.application.port.in.dto.GetStockPreMarketInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockSummaryInfoDto;
 import codeping.flex.stock.domain.Stock;
 import codeping.flex.stock.domain.StockImage;
@@ -22,8 +21,15 @@ public class GetStockInfoMapper {
                 .build();
     }
 
-    public static GetStockOHLCVInfoDto toGetStockOHLCVInfoDto(StockOHLCV stockOHLCV) {
-        return GetStockOHLCVInfoDto.builder()
+    public static GetStockPreMarketInfoDto toGetStockPreMarketInfoDto(StockOHLCV stockOHLCV, StockMarketCap stockMarketCap) {
+        return GetStockPreMarketInfoDto.builder()
+                .ohlcvInfo(toStockOHLCVInfoDto(stockOHLCV))
+                .marketCapInfo(toStockMarketCapInfoDto(stockMarketCap))
+                .build();
+    }
+
+    public static GetStockPreMarketInfoDto.StockOHLCVInfoDto toStockOHLCVInfoDto(StockOHLCV stockOHLCV) {
+        return GetStockPreMarketInfoDto.StockOHLCVInfoDto.builder()
                 .stockcode(stockOHLCV.getStockID().getStockcode())
                 .date(stockOHLCV.getStockID().getDate())
                 .openPrice(stockOHLCV.getOpenPrice())
@@ -35,8 +41,8 @@ public class GetStockInfoMapper {
                 .build();
     }
 
-    public static GetStockMarketCapInfoDto toGetStockMarketCapInfoDto(StockMarketCap stockMarketCap) {
-        return GetStockMarketCapInfoDto.builder()
+    public static GetStockPreMarketInfoDto.StockMarketCapInfoDto toStockMarketCapInfoDto(StockMarketCap stockMarketCap) {
+        return GetStockPreMarketInfoDto.StockMarketCapInfoDto.builder()
                 .stockcode(stockMarketCap.getStockID().getStockcode())
                 .date(stockMarketCap.getStockID().getDate())
                 .marketCap(stockMarketCap.getMarketCap())
