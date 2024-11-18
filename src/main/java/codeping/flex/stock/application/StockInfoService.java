@@ -1,10 +1,10 @@
 package codeping.flex.stock.application;
 
-import codeping.flex.stock.adapter.out.persistense.entity.pk.StockIDEntity;
-import codeping.flex.stock.adapter.out.persistense.mapper.StockIDMapper;
-import codeping.flex.stock.adapter.out.persistense.mapper.StockImageMapper;
-import codeping.flex.stock.adapter.out.persistense.mapper.StockMapper;
-import codeping.flex.stock.adapter.out.persistense.mapper.StockOHLCVMapper;
+import codeping.flex.stock.adapter.out.persistence.entity.pk.StockIDEntity;
+import codeping.flex.stock.adapter.out.persistence.mapper.StockIDMapper;
+import codeping.flex.stock.adapter.out.persistence.mapper.StockImageMapper;
+import codeping.flex.stock.adapter.out.persistence.mapper.StockMapper;
+import codeping.flex.stock.adapter.out.persistence.mapper.StockOHLCVMapper;
 import codeping.flex.stock.application.mapper.GetStockInfoMapper;
 import codeping.flex.stock.application.port.in.StockInfoUsecase;
 import codeping.flex.stock.application.port.in.dto.GetStockPreMarketInfoDto;

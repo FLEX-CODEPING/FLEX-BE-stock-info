@@ -1,8 +1,8 @@
-package codeping.flex.stock.adapter.out.persistense;
+package codeping.flex.stock.adapter.out.persistence;
 
-import codeping.flex.stock.adapter.out.persistense.entity.StockOHLCVEntity;
-import codeping.flex.stock.adapter.out.persistense.entity.pk.StockIDEntity;
-import codeping.flex.stock.adapter.out.persistense.entity.repository.StockOHLCVRepository;
+import codeping.flex.stock.adapter.out.persistence.entity.StockOHLCVEntity;
+import codeping.flex.stock.adapter.out.persistence.entity.pk.StockIDEntity;
+import codeping.flex.stock.adapter.out.persistence.repository.StockOHLCVRepository;
 import codeping.flex.stock.application.port.out.LoadStockOHLCVPort;
 import codeping.flex.stock.global.StockErrorCode;
 import codeping.flex.stock.global.annotation.architecture.PersistenceAdapter;

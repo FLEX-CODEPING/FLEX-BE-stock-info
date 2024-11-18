@@ -1,9 +1,9 @@
-package codeping.flex.stock.adapter.out.persistense;
+package codeping.flex.stock.adapter.out.persistence;
 
-import codeping.flex.stock.adapter.out.persistense.entity.StockMarketCapEntity;
-import codeping.flex.stock.adapter.out.persistense.entity.pk.StockIDEntity;
-import codeping.flex.stock.adapter.out.persistense.entity.repository.StockMarketCapRepository;
-import codeping.flex.stock.adapter.out.persistense.mapper.StockMarketCapMapper;
+import codeping.flex.stock.adapter.out.persistence.entity.StockMarketCapEntity;
+import codeping.flex.stock.adapter.out.persistence.entity.pk.StockIDEntity;
+import codeping.flex.stock.adapter.out.persistence.repository.StockMarketCapRepository;
+import codeping.flex.stock.adapter.out.persistence.mapper.StockMarketCapMapper;
 import codeping.flex.stock.application.port.out.LoadStockMarketCapPort;
 import codeping.flex.stock.domain.StockMarketCap;
 import codeping.flex.stock.global.StockErrorCode;

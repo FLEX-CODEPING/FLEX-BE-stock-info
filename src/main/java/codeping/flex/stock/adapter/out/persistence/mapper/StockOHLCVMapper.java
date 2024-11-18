@@ -1,6 +1,6 @@
-package codeping.flex.stock.adapter.out.persistense.mapper;
+package codeping.flex.stock.adapter.out.persistence.mapper;
 
-import codeping.flex.stock.adapter.out.persistense.entity.StockOHLCVEntity;
+import codeping.flex.stock.adapter.out.persistence.entity.StockOHLCVEntity;
 import codeping.flex.stock.domain.StockOHLCV;
 
 public class StockOHLCVMapper {

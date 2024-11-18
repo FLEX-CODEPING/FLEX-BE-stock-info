@@ -1,6 +1,6 @@
-package codeping.flex.stock.adapter.out.persistense.mapper;
+package codeping.flex.stock.adapter.out.persistence.mapper;
 
-import codeping.flex.stock.adapter.out.persistense.entity.StockImageEntity;
+import codeping.flex.stock.adapter.out.persistence.entity.StockImageEntity;
 import codeping.flex.stock.domain.StockImage;
 
 public class StockImageMapper {

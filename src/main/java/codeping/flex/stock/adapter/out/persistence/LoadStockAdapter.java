@@ -1,7 +1,7 @@
-package codeping.flex.stock.adapter.out.persistense;
+package codeping.flex.stock.adapter.out.persistence;
 
-import codeping.flex.stock.adapter.out.persistense.entity.StockEntity;
-import codeping.flex.stock.adapter.out.persistense.entity.repository.StockRepository;
+import codeping.flex.stock.adapter.out.persistence.entity.StockEntity;
+import codeping.flex.stock.adapter.out.persistence.repository.StockRepository;
 import codeping.flex.stock.application.port.out.LoadStockPort;
 import codeping.flex.stock.global.StockErrorCode;
 import codeping.flex.stock.global.annotation.architecture.PersistenceAdapter;
