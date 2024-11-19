@@ -14,12 +14,12 @@ public class InterestStock {
 
     private String corpName;
 
-    private String stockCode;
+    private String stockcode;
 
     @Builder
-    public InterestStock(Long userId, String corpName, String stockCode) {
+    public InterestStock(Long userId, String corpName, String stockcode) {
         this.userId = userId;
         this.corpName = corpName;
-        this.stockCode = stockCode;
+        this.stockcode = stockcode;
     }
 }
