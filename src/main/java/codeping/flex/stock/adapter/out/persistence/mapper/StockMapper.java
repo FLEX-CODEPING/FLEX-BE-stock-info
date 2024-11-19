@@ -5,7 +5,7 @@ import codeping.flex.stock.domain.Stock;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface StockMapper {
     StockMapper INSTANCE = Mappers.getMapper(StockMapper.class);
 

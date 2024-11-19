@@ -15,11 +15,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LoadStockMarketCapAdapter implements LoadStockMarketCapPort {
     private final StockMarketCapRepository stockMarketCapRepository;
+    private final StockMarketCapMapper stockMarketCapMapper;
 
     @Override
-    public StockMarketCap loadStockMarketCap(StockIDEntity stockIDEntity) {
+    public StockMarketCap loadByStockCodeAndDate(StockIDEntity stockIDEntity) {
         StockMarketCapEntity entity = stockMarketCapRepository.findById(stockIDEntity)
                 .orElseThrow(() -> ApplicationException.from(StockErrorCode.STOCK_MARKET_CAP_NOT_FOUND));
-        return StockMarketCapMapper.toDomain(entity);
+        return stockMarketCapMapper.toDomain(entity);
     }
 }
