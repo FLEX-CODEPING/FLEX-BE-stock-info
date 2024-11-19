@@ -10,6 +10,8 @@ import codeping.flex.stock.global.annotation.architecture.PersistenceAdapter;
 import codeping.flex.stock.global.common.exception.ApplicationException;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Optional;
+
 @PersistenceAdapter
 @RequiredArgsConstructor
 public class LoadStockAdapter implements LoadStockPort {
@@ -17,9 +19,8 @@ public class LoadStockAdapter implements LoadStockPort {
     private final StockMapper stockMapper;
 
     @Override
-    public Stock loadByStockCode(String stockcode) {
-        StockEntity entity = stockRepository.findByStockcode(stockcode).orElseThrow(
-                ()-> ApplicationException.from(StockErrorCode.STOCK_NOT_FOUND));
-        return stockMapper.toDomain(entity);
+    public Optional<Stock> loadByStockCode(String stockcode) {
+        return stockRepository.findByStockcode(stockcode)
+                .map(stockMapper::toDomain);
     }
 }

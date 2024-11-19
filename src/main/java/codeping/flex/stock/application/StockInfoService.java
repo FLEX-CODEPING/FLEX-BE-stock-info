@@ -14,7 +14,9 @@ import codeping.flex.stock.application.port.out.LoadStockMarketCapPort;
 import codeping.flex.stock.application.port.out.LoadStockOHLCVPort;
 import codeping.flex.stock.application.port.out.LoadStockPort;
 import codeping.flex.stock.domain.*;
+import codeping.flex.stock.global.StockErrorCode;
 import codeping.flex.stock.global.annotation.architecture.ApplicationService;
+import codeping.flex.stock.global.common.exception.ApplicationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,16 +37,20 @@ public class StockInfoService implements StockInfoUsecase {
     // TODO: 관심 종목 여부 받아와야함
     @Override
     public GetStockSummaryInfoDto getStockSummaryInfo(String stockcode) {
-        Stock stock = loadStockPort.loadByStockCode(stockcode);
-        StockImage stockImage = loadStockImagePort.loadByStockCode(stockcode);
+        Stock stock = loadStockPort.loadByStockCode(stockcode).orElseThrow(()->
+                ApplicationException.from(StockErrorCode.STOCK_NOT_FOUND));
+        StockImage stockImage = loadStockImagePort.loadByStockCode(stockcode).orElse(null);
         return getStockInfoMapper.toGetStockInfoDto(stock, stockImage);
     }
 
     @Override
     public GetStockPreMarketInfoDto getStockPreMarketInfo(String stockcode, LocalDate date) {
         StockIDEntity stockIDEntity =stockIDMapper.toEntity(stockcode, date);
-        StockOHLCV stockOHLCV = loadStockOHLCVPort.loadByStockCodeAndDate(stockIDEntity);
-        StockMarketCap stockMarketCap = loadStockMarketCapPort.loadByStockCodeAndDate(stockIDEntity);
+
+        StockOHLCV stockOHLCV = loadStockOHLCVPort.loadByStockCodeAndDate(stockIDEntity).orElseThrow(
+                ()-> ApplicationException.from(StockErrorCode.STOCK_OHLCV_NOT_FOUND));;
+        StockMarketCap stockMarketCap = loadStockMarketCapPort.loadByStockCodeAndDate(stockIDEntity).orElseThrow(
+                () -> ApplicationException.from(StockErrorCode.STOCK_MARKET_CAP_NOT_FOUND));
         return getStockInfoMapper.toGetStockPreMarketInfoDto(stockOHLCV, stockMarketCap);
     }
 

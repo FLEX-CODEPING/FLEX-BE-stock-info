@@ -1,7 +1,9 @@
 package codeping.flex.stock.application.port.out;
 
-import codeping.flex.stock.adapter.out.persistence.entity.StockImageEntity;
+import codeping.flex.stock.domain.StockImage;
+
+import java.util.Optional;
 
 public interface LoadStockImagePort {
-    StockImageEntity loadStockImage(String stockcode);
+    Optional<StockImage> loadByStockCode(String stockcode);
 }
