@@ -1,4 +1,4 @@
-package codeping.flex.stock.global;
+package codeping.flex.stock.domain.execption;
 
 import codeping.flex.stock.global.common.response.code.BaseErrorCode;
 import lombok.AllArgsConstructor;

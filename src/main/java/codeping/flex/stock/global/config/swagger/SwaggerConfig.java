@@ -1,7 +1,7 @@
 package codeping.flex.stock.global.config.swagger;
 
-import codeping.flex.stock.global.StockErrorCode;
-import codeping.flex.stock.global.UserErrorCode;
+import codeping.flex.stock.domain.execption.StockErrorCode;
+import codeping.flex.stock.domain.execption.UserErrorCode;
 import codeping.flex.stock.global.annotation.swagger.ApiErrorCodes;
 import codeping.flex.stock.global.common.response.ApplicationResponse;
 import codeping.flex.stock.global.common.response.code.BaseErrorCode;
