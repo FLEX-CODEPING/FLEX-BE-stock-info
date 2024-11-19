@@ -2,9 +2,6 @@ package codeping.flex.stock.application;
 
 import codeping.flex.stock.adapter.out.persistence.entity.pk.StockIDEntity;
 import codeping.flex.stock.adapter.out.persistence.mapper.StockIDMapper;
-import codeping.flex.stock.adapter.out.persistence.mapper.StockImageMapper;
-import codeping.flex.stock.adapter.out.persistence.mapper.StockMapper;
-import codeping.flex.stock.adapter.out.persistence.mapper.StockOHLCVMapper;
 import codeping.flex.stock.application.mapper.GetStockInfoMapper;
 import codeping.flex.stock.application.port.in.StockInfoUsecase;
 import codeping.flex.stock.application.port.in.dto.GetStockPreMarketInfoDto;
@@ -14,7 +11,7 @@ import codeping.flex.stock.application.port.out.LoadStockMarketCapPort;
 import codeping.flex.stock.application.port.out.LoadStockOHLCVPort;
 import codeping.flex.stock.application.port.out.LoadStockPort;
 import codeping.flex.stock.domain.*;
-import codeping.flex.stock.global.StockErrorCode;
+import codeping.flex.stock.domain.execption.StockErrorCode;
 import codeping.flex.stock.global.annotation.architecture.ApplicationService;
 import codeping.flex.stock.global.common.exception.ApplicationException;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +31,6 @@ public class StockInfoService implements StockInfoUsecase {
     private final GetStockInfoMapper getStockInfoMapper;
     private final StockIDMapper stockIDMapper;
 
-    // TODO: 관심 종목 여부 받아와야함
     @Override
     public GetStockSummaryInfoDto getStockSummaryInfo(String stockcode) {
         Stock stock = loadStockPort.loadByStockCode(stockcode).orElseThrow(()->
