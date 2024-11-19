@@ -9,6 +9,8 @@ import codeping.flex.stock.global.annotation.architecture.PersistenceAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Optional;
+
 
 @Slf4j
 @PersistenceAdapter
@@ -21,7 +23,6 @@ public class InterestStockAdapter implements InterestStockPort {
     @Override
     public void save(InterestStock interestStock) {
         InterestStockEntity entity = interestStockMapper.toEntity(interestStock);
-        log.info("interestStock {}: {}", interestStock.getStockcode(), entity.getStockcode());
         interestStockRepository.save(entity);
     }
 
