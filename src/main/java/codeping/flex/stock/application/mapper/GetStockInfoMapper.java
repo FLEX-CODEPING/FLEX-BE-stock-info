@@ -7,48 +7,34 @@ import codeping.flex.stock.domain.StockImage;
 import codeping.flex.stock.domain.StockMarketCap;
 import codeping.flex.stock.domain.StockOHLCV;
 
-public class GetStockInfoMapper {
-    private GetStockInfoMapper() {
-        throw new IllegalStateException("Util Class");
-    }
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 
-    public static GetStockSummaryInfoDto toGetStockInfoDto(Stock stock, StockImage stockImage) {
-        return GetStockSummaryInfoDto.builder()
-                .stockcode(stock.getStockcode())
-                .corpName(stock.getCorpName())
-                .symbolImageUrl(stockImage == null ? null : stockImage.getImageUrl())
-                .isInterested(null)
-                .build();
-    }
+@Mapper(componentModel = "spring")
+public interface GetStockInfoMapper {
 
-    public static GetStockPreMarketInfoDto toGetStockPreMarketInfoDto(StockOHLCV stockOHLCV, StockMarketCap stockMarketCap) {
-        return GetStockPreMarketInfoDto.builder()
-                .ohlcvInfo(toStockOHLCVInfoDto(stockOHLCV))
-                .marketCapInfo(toStockMarketCapInfoDto(stockMarketCap))
-                .build();
-    }
+    @Mapping(target = "stockcode", source = "stock.stockcode")
+    @Mapping(target = "corpName", source = "stock.corpName")
+    @Mapping(target = "symbolImageUrl", source = "stockImage", qualifiedByName = "toSymbolImageUrl")
+//    @Mapping(target = "isInterested", constant = "null")
+    GetStockSummaryInfoDto toGetStockInfoDto(Stock stock, StockImage stockImage);
 
-    public static GetStockPreMarketInfoDto.StockOHLCVInfoDto toStockOHLCVInfoDto(StockOHLCV stockOHLCV) {
-        return GetStockPreMarketInfoDto.StockOHLCVInfoDto.builder()
-                .stockcode(stockOHLCV.getStockID().getStockcode())
-                .date(stockOHLCV.getStockID().getDate())
-                .openPrice(stockOHLCV.getOpenPrice())
-                .highPrice(stockOHLCV.getHighPrice())
-                .lowPrice(stockOHLCV.getLowPrice())
-                .closePrice(stockOHLCV.getClosePrice())
-                .volume(stockOHLCV.getVolume())
-                .changeRate(stockOHLCV.getChangeRate())
-                .build();
-    }
+    @Mapping(target = "ohlcvInfo", source = "stockOHLCV")
+    @Mapping(target = "marketCapInfo", source = "stockMarketCap")
+    GetStockPreMarketInfoDto toGetStockPreMarketInfoDto(StockOHLCV stockOHLCV, StockMarketCap stockMarketCap);
 
-    public static GetStockPreMarketInfoDto.StockMarketCapInfoDto toStockMarketCapInfoDto(StockMarketCap stockMarketCap) {
-        return GetStockPreMarketInfoDto.StockMarketCapInfoDto.builder()
-                .stockcode(stockMarketCap.getStockID().getStockcode())
-                .date(stockMarketCap.getStockID().getDate())
-                .marketCap(stockMarketCap.getMarketCap())
-                .volume(stockMarketCap.getVolume())
-                .tradingVolume(stockMarketCap.getTradingValue())
-                .listedShares(stockMarketCap.getListedShares())
-                .build();
+    @Mapping(target = "stockcode", source = "stockID.stockcode")
+    @Mapping(target = "date", source = "stockID.date")
+    GetStockPreMarketInfoDto.StockOHLCVInfoDto toStockOHLCVInfoDto(StockOHLCV stockOHLCV);
+
+    @Mapping(target = "stockcode", source = "stockID.stockcode")
+    @Mapping(target = "date", source = "stockID.date")
+    @Mapping(target = "tradingVolume", source = "tradingValue")
+    GetStockPreMarketInfoDto.StockMarketCapInfoDto toStockMarketCapInfoDto(StockMarketCap stockMarketCap);
+
+    @Named("toSymbolImageUrl")
+    default String toSymbolImageUrl(StockImage stockImage) {
+        return stockImage == null ? null : stockImage.getImageUrl();
     }
 }
