@@ -9,7 +9,6 @@ import codeping.flex.stock.global.annotation.architecture.PersistenceAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Optional;
 
 @Slf4j
 @PersistenceAdapter
@@ -27,9 +26,13 @@ public class InterestStockAdapter implements InterestStockPort {
     }
 
     @Override
-    public Optional<InterestStock> loadByIdAndUserId(Long id, Long userId) {
-        return interestStockRepository.findByIdAndUserId(id, userId)
-                .map(interestStockMapper::toDomain);
+    public boolean existsByIdAndUserId(Long id, Long userId) {
+        return interestStockRepository.existsByIdAndUserId(id, userId);
+    }
+
+    @Override
+    public boolean existsByStockcodeAndUserId(String stockcode, Long userId) {
+        return interestStockRepository.existsByStockcodeAndUserId(stockcode, userId);
     }
 
     @Override
