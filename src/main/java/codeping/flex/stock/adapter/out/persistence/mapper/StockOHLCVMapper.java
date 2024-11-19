@@ -2,21 +2,14 @@ package codeping.flex.stock.adapter.out.persistence.mapper;
 
 import codeping.flex.stock.adapter.out.persistence.entity.StockOHLCVEntity;
 import codeping.flex.stock.domain.StockOHLCV;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
-public class StockOHLCVMapper {
-    private StockOHLCVMapper() {
-        throw new IllegalStateException("Util Class");
-    }
+@Mapper(componentModel = "spring", uses = {StockIDMapper.class})
+public interface StockOHLCVMapper {
+    StockOHLCVMapper INSTANCE = Mappers.getMapper(StockOHLCVMapper.class);
 
-    public static StockOHLCV toDomain(StockOHLCVEntity entity) {
-        return StockOHLCV.builder()
-                .stockID(StockIDMapper.toDomain(entity.getStockIDEntity()))
-                .openPrice(entity.getOpenPrice())
-                .highPrice(entity.getHighPrice())
-                .lowPrice(entity.getLowPrice())
-                .closePrice(entity.getClosePrice())
-                .volume(entity.getVolume())
-                .changeRate(entity.getChangeRate())
-                .build();
-    }
+    @Mapping(target = "stockID", source = "stockID")
+    StockOHLCV toDomain(StockOHLCVEntity stockOHLCVEntity);
 }

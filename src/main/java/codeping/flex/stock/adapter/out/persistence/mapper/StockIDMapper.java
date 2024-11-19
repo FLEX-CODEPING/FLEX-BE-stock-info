@@ -2,23 +2,13 @@ package codeping.flex.stock.adapter.out.persistence.mapper;
 
 import codeping.flex.stock.adapter.out.persistence.entity.pk.StockIDEntity;
 import codeping.flex.stock.domain.StockID;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-public class StockIDMapper {
-    private StockIDMapper() {
-        throw new IllegalStateException("Util Class");
-    }
+@Mapper(componentModel = "spring")
+public interface StockIDMapper {
+    StockIDMapper INSTANCE = Mappers.getMapper(StockIDMapper.class);
 
-    public static StockID toDomain(StockIDEntity entity) {
-        return StockID.builder()
-                .stockcode(entity.getStockcode())
-                .date(entity.getDate())
-                .build();
-    }
-
-    public static StockIDEntity toEntity(StockID domain) {
-        return StockIDEntity.builder()
-                .stockcode(domain.getStockcode())
-                .date(domain.getDate())
-                .build();
-    }
+    StockID toDomain(StockIDEntity entity);
+    StockIDEntity toEntity(StockID domain);
 }

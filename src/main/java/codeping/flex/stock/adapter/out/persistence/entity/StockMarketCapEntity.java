@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class StockMarketCapEntity {
 
     @EmbeddedId
-    private StockIDEntity stockIDEntity;
+    private StockIDEntity stockID;
 
     @Column(name = "market_cap")
     private Long marketCap;

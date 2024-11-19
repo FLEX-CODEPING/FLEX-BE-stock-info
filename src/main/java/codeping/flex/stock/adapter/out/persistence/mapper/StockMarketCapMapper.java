@@ -2,19 +2,13 @@ package codeping.flex.stock.adapter.out.persistence.mapper;
 
 import codeping.flex.stock.adapter.out.persistence.entity.StockMarketCapEntity;
 import codeping.flex.stock.domain.StockMarketCap;
+import org.mapstruct.*;
+import org.mapstruct.factory.Mappers;
 
-public class StockMarketCapMapper {
-    private StockMarketCapMapper() {
-        throw new IllegalStateException("Util Class");
-    }
+@Mapper(componentModel = "spring", uses = {StockIDMapper.class})
+public interface StockMarketCapMapper {
+    StockMarketCapMapper INSTANCE = Mappers.getMapper(StockMarketCapMapper.class);
 
-    public static StockMarketCap toDomain(StockMarketCapEntity entity) {
-        return StockMarketCap.builder()
-                .stockID(StockIDMapper.toDomain(entity.getStockIDEntity()))
-                .marketCap(entity.getMarketCap())
-                .volume(entity.getVolume())
-                .tradingValue(entity.getTradingValue())
-                .listedShares(entity.getListedShares())
-                .build();
-    }
+    @Mapping(target = "stockID", source = "stockID")
+    StockMarketCap toDomain(StockMarketCapEntity entity);
 }

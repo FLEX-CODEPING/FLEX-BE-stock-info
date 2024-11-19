@@ -2,17 +2,12 @@ package codeping.flex.stock.adapter.out.persistence.mapper;
 
 import codeping.flex.stock.adapter.out.persistence.entity.StockEntity;
 import codeping.flex.stock.domain.Stock;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-public class StockMapper {
-    private StockMapper() {
-        throw new IllegalStateException("Util Class");
-    }
+@Mapper
+public interface StockMapper {
+    StockMapper INSTANCE = Mappers.getMapper(StockMapper.class);
 
-    public static Stock toDomain(StockEntity entity) {
-        return Stock.builder()
-                .stockcode(entity.getStockcode())
-                .corpName(entity.getCorpName())
-                .market(entity.getMarket())
-                .build();
-    }
+    Stock toDomain(StockEntity stockEntity);
 }

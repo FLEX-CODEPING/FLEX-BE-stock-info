@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class StockOHLCVEntity {
 
     @EmbeddedId
-    private StockIDEntity stockIDEntity;
+    private StockIDEntity stockID;
 
     @Column
     private Float openPrice;
