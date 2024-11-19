@@ -23,12 +23,12 @@ public class InterestStockEntity extends BaseTimeEntity {
     private String corpName;
 
     @Column(nullable = false)
-    private String stockCode;
+    private String stockcode;
 
     @Builder
-    public InterestStockEntity(Long userId, String corpName, String stockCode) {
+    public InterestStockEntity(Long userId, String corpName, String stockcode) {
         this.userId = userId;
         this.corpName = corpName;
-        this.stockCode = stockCode;
+        this.stockcode = stockcode;
     }
 }
