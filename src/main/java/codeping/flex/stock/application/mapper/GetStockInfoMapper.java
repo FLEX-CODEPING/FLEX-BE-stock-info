@@ -17,7 +17,6 @@ public interface GetStockInfoMapper {
     @Mapping(target = "stockcode", source = "stock.stockcode")
     @Mapping(target = "corpName", source = "stock.corpName")
     @Mapping(target = "symbolImageUrl", source = "stockImage", qualifiedByName = "toSymbolImageUrl")
-//    @Mapping(target = "isInterested", constant = "null")
     GetStockSummaryInfoDto toGetStockInfoDto(Stock stock, StockImage stockImage);
 
     @Mapping(target = "ohlcvInfo", source = "stockOHLCV")

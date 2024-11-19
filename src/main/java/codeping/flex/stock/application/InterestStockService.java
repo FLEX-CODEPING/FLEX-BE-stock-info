@@ -43,10 +43,4 @@ public class InterestStockService implements InterestStockUsecase {
         interestStockPort.deleteById(interestStockId);
     }
 
-    @Override
-    public boolean getIsInterest(String stockCode, Long userId) {
-        return interestStockPort.existsByStockcodeAndUserId(stockCode, userId);
-    }
-
-
 }
