@@ -6,7 +6,7 @@ import codeping.flex.stock.application.port.out.InterestStockPort;
 import codeping.flex.stock.application.port.out.LoadStockPort;
 import codeping.flex.stock.domain.InterestStock;
 import codeping.flex.stock.domain.Stock;
-import codeping.flex.stock.global.StockErrorCode;
+import codeping.flex.stock.domain.execption.StockErrorCode;
 import codeping.flex.stock.global.annotation.architecture.ApplicationService;
 import codeping.flex.stock.global.common.exception.ApplicationException;
 import jakarta.transaction.Transactional;
@@ -42,4 +42,11 @@ public class InterestStockService implements InterestStockUsecase {
         }
         interestStockPort.deleteById(interestStockId);
     }
+
+    @Override
+    public boolean getIsInterest(String stockCode, Long userId) {
+        return interestStockPort.existsByStockcodeAndUserId(stockCode, userId);
+    }
+
+
 }
