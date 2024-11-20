@@ -24,14 +24,26 @@ public interface GetInterestStockResponseMapper {
     })
     GetInterestStockInfoDto toDto(InterestStock interestStock, StockImage stockImage);
 
-    default List<GetInterestStockInfoDto> toDtoList(List<InterestStock> interestStocks, List<StockImage> stockImages) {
+    default List<GetInterestStockInfoDto> toDtoList(
+            List<InterestStock> interestStocks,
+            List<StockImage> stockImages
+    ) {
         Map<String, StockImage> stockImageMap = stockImages.stream()
-                .collect(Collectors.toMap(StockImage::getStockcode, Function.identity(), (existing, replacement) -> existing));
+                .collect(Collectors.toMap(
+                        StockImage::getStockcode,
+                        Function.identity(),
+                        (existing, replacement) -> existing // 중복 키 처리
+                ));
 
         return interestStocks.stream()
-                .map(interestStock -> toDto(interestStock, stockImageMap.get(interestStock.getStockcode())))
+                .map(interestStock -> {
+                    StockImage stockImage = stockImageMap.get(interestStock.getStockcode());
+                    return toDto(interestStock, stockImage);
+                })
                 .collect(Collectors.toList());
     }
+
+
 
     @Named("toSymbolImageUrl")
     default String toSymbolImageUrl(StockImage stockImage) {
