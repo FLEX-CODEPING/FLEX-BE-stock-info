@@ -1,7 +1,7 @@
 package codeping.flex.stock.global.annotation.swagger;
 
-import codeping.flex.stock.global.StockErrorCode;
-import codeping.flex.stock.global.UserErrorCode;
+import codeping.flex.stock.domain.execption.StockErrorCode;
+import codeping.flex.stock.domain.execption.UserErrorCode;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

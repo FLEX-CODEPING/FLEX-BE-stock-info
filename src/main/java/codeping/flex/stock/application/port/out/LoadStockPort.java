@@ -1,7 +1,9 @@
 package codeping.flex.stock.application.port.out;
 
-import codeping.flex.stock.adapter.out.persistense.entity.StockEntity;
+import codeping.flex.stock.domain.Stock;
+
+import java.util.Optional;
 
 public interface LoadStockPort {
-    StockEntity loadStock(String stockcode);
+    Optional<Stock> loadByStockCode(String stockcode);
 }
