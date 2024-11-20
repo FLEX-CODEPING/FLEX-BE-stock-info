@@ -17,7 +17,8 @@ public class InterestStock {
     private String stockcode;
 
     @Builder
-    public InterestStock(Long userId, String corpName, String stockcode) {
+    public InterestStock(Long id, Long userId, String corpName, String stockcode) {
+        this.id = id;
         this.userId = userId;
         this.corpName = corpName;
         this.stockcode = stockcode;

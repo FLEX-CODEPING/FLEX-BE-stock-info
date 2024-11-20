@@ -2,7 +2,7 @@ package codeping.flex.stock.application;
 
 import codeping.flex.stock.adapter.out.persistence.entity.pk.StockIDEntity;
 import codeping.flex.stock.adapter.out.persistence.mapper.StockIDMapper;
-import codeping.flex.stock.application.mapper.GetStockInfoMapper;
+import codeping.flex.stock.application.mapper.GetStockInfoResponseMapper;
 import codeping.flex.stock.application.port.in.StockInfoUsecase;
 import codeping.flex.stock.application.port.in.dto.GetStockPreMarketInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockSummaryInfoDto;
@@ -28,7 +28,7 @@ public class StockInfoService implements StockInfoUsecase {
     private final LoadStockOHLCVPort loadStockOHLCVPort;
     private final LoadStockMarketCapPort loadStockMarketCapPort;
     private final LoadStockImagePort loadStockImagePort;
-    private final GetStockInfoMapper getStockInfoMapper;
+    private final GetStockInfoResponseMapper getStockInfoResponseMapper;
     private final StockIDMapper stockIDMapper;
 
     @Override
@@ -36,7 +36,7 @@ public class StockInfoService implements StockInfoUsecase {
         Stock stock = loadStockPort.loadByStockCode(stockcode).orElseThrow(()->
                 ApplicationException.from(StockErrorCode.STOCK_NOT_FOUND));
         StockImage stockImage = loadStockImagePort.loadByStockCode(stockcode).orElse(null);
-        return getStockInfoMapper.toGetStockInfoDto(stock, stockImage);
+        return getStockInfoResponseMapper.toGetStockInfoDto(stock, stockImage);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class StockInfoService implements StockInfoUsecase {
                 ()-> ApplicationException.from(StockErrorCode.STOCK_OHLCV_NOT_FOUND));;
         StockMarketCap stockMarketCap = loadStockMarketCapPort.loadByStockCodeAndDate(stockIDEntity).orElseThrow(
                 () -> ApplicationException.from(StockErrorCode.STOCK_MARKET_CAP_NOT_FOUND));
-        return getStockInfoMapper.toGetStockPreMarketInfoDto(stockOHLCV, stockMarketCap);
+        return getStockInfoResponseMapper.toGetStockPreMarketInfoDto(stockOHLCV, stockMarketCap);
     }
 
 }

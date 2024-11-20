@@ -8,12 +8,9 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
-public interface InterestStockMapper {
+public interface InterestStockMapper extends EntityMapper<InterestStockEntity, InterestStock> {
 
     InterestStockMapper INSTANCE = Mappers.getMapper(InterestStockMapper.class);
-
-    InterestStockEntity toEntity(InterestStock interestStock);
-    InterestStock toDomain(InterestStockEntity entity);
 
     @Mapping(target = "userId", source = "userId")
     @Mapping(target = "stockcode", source = "stock.stockcode")

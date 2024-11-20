@@ -8,8 +8,8 @@ import codeping.flex.stock.domain.InterestStock;
 import codeping.flex.stock.global.annotation.architecture.PersistenceAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.Optional;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 
 
 @Slf4j
@@ -39,5 +39,10 @@ public class InterestStockAdapter implements InterestStockPort {
     @Override
     public void deleteById(Long id) {
         interestStockRepository.deleteById(id);
+    }
+
+    @Override
+    public Slice<InterestStock> findByUserId(Long userId, Pageable pageable) {
+        return interestStockRepository.findByUserIdOrderByCreatedAtDesc(userId, pageable).map(interestStockMapper::toDomain);
     }
 }
