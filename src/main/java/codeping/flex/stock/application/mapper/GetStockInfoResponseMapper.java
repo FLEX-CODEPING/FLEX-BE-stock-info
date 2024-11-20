@@ -12,7 +12,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
 @Mapper(componentModel = "spring")
-public interface GetStockInfoMapper {
+public interface GetStockInfoResponseMapper {
 
     @Mapping(target = "stockcode", source = "stock.stockcode")
     @Mapping(target = "corpName", source = "stock.corpName")
