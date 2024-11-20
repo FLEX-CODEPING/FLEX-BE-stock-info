@@ -8,6 +8,7 @@ import codeping.flex.stock.domain.StockImage;
 import codeping.flex.stock.global.annotation.architecture.PersistenceAdapter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.Optional;
 
 @PersistenceAdapter
@@ -20,5 +21,11 @@ public class LoadStockImageAdapter implements LoadStockImagePort {
     public Optional<StockImage> loadByStockCode(String stockcode) {
         return stockImageRepository.findByStockcode(stockcode)
                 .map(stockImageMapper::toDomain);
+    }
+
+    @Override
+    public List<StockImage> loadAllByStockCode(List<String> stockcodes) {
+        return stockImageRepository.findAllByStockcodeIn(stockcodes)
+                .stream().map(stockImageMapper::toDomain).toList();
     }
 }
