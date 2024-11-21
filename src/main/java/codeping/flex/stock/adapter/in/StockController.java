@@ -2,12 +2,14 @@ package codeping.flex.stock.adapter.in;
 
 import codeping.flex.stock.application.port.in.StockInfoUsecase;
 import codeping.flex.stock.application.port.in.dto.GetStockPreMarketInfoDto;
+import codeping.flex.stock.application.port.in.dto.GetStockPreOpenSummaryInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockSummaryInfoDto;
 import codeping.flex.stock.domain.execption.StockErrorCode;
 import codeping.flex.stock.global.annotation.architecture.WebAdapter;
 import codeping.flex.stock.global.annotation.swagger.ApiErrorCodes;
 import codeping.flex.stock.global.common.response.ApplicationResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -30,10 +32,21 @@ public class StockController {
         return ApplicationResponse.onSuccess(stockUsecase.getStockSummaryInfo(stockcode));
     }
 
+    @GetMapping("/{stockcode}/preOpen")
+    @Operation(summary = "장 외 시간 주식 정보 조회", description = "장 외 시간의 회사 이름, 코드, 이미지, 관심 종목 여부 등을 반환합니다.")
+    @ApiErrorCodes(stockErrors = {StockErrorCode.STOCK_NOT_FOUND})
+    public ApplicationResponse<GetStockPreOpenSummaryInfoDto> getStockPreOpenSummaryInfo(@PathVariable String stockcode,
+                                                                                         @Parameter(description = "yyyy-MM-dd") @RequestParam
+                                                                                         @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
+        return ApplicationResponse.onSuccess(stockUsecase.getStockPreOpenSummaryInfo(stockcode, date));
+    }
+
     @GetMapping("/market/preOpen")
     @Operation(summary = "장외 시간 주식 ohlcv & 시가총액 조회", description = "장외 시간 전일 주식 시가, 고가, 저가, 종가, 거래량, 시가 총액 정보")
     @ApiErrorCodes(stockErrors = {StockErrorCode.STOCK_OHLCV_NOT_FOUND})
-    public ApplicationResponse<GetStockPreMarketInfoDto> getStockMarketInfo(@RequestParam String stockcode, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
+    public ApplicationResponse<GetStockPreMarketInfoDto> getStockPreMarketInfo(@RequestParam String stockcode,
+                                                                               @Parameter(description = "yyyy-MM-dd") @RequestParam
+                                                                               @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
         return ApplicationResponse.onSuccess(stockUsecase.getStockPreMarketInfo(stockcode, date));
     }
 
