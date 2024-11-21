@@ -26,7 +26,7 @@ public class GetStockPreMarketInfoDto {
         private Long volume;
         @Schema(description = "당일 거래량")
         private Long tradingVolume;
-        @Schema(description = "상장 주ㄱ수")
+        @Schema(description = "상장 주식수")
         private Long listedShares;
     }
 
