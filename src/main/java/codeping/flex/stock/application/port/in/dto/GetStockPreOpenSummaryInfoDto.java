@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDate;
+
 @Getter
 @Builder
 public class GetStockPreOpenSummaryInfoDto {
@@ -13,6 +15,8 @@ public class GetStockPreOpenSummaryInfoDto {
     private String corpName;
     @Schema(description = "로고 url")
     private String symbolImageUrl;
+    @Schema(description = "기준일")
+    private LocalDate date;
     @Schema(description = "종가")
     private Float closePrice;
     @Schema(description = "거래량")

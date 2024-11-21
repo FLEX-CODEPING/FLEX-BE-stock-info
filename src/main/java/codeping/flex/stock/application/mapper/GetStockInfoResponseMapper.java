@@ -12,6 +12,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
+import java.time.LocalDate;
+
 @Mapper(componentModel = "spring")
 public interface GetStockInfoResponseMapper {
 
@@ -26,7 +28,7 @@ public interface GetStockInfoResponseMapper {
     @Mapping(target = "closePrice", source = "stockOHLCV.closePrice")
     @Mapping(target = "volume", source = "stockOHLCV.volume")
     @Mapping(target = "changeRate", source = "stockOHLCV.changeRate")
-    GetStockPreOpenSummaryInfoDto toGetStockSummaryPreMarketInfoDto(Stock stock, StockImage stockImage, StockOHLCV stockOHLCV);
+    GetStockPreOpenSummaryInfoDto toGetStockSummaryPreMarketInfoDto(Stock stock, StockImage stockImage, StockOHLCV stockOHLCV, LocalDate date);
 
 
     @Mapping(target = "ohlcvInfo", source = "stockOHLCV")

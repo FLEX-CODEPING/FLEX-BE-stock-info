@@ -44,7 +44,7 @@ public class StockInfoService implements StockInfoUsecase {
         Stock stock = getStock(stockcode);
         StockImage stockImage = getStockImage(stockcode);
         StockOHLCV stockOHLCV = getStockOHLCV(stockcode, date);
-        return getStockInfoResponseMapper.toGetStockSummaryPreMarketInfoDto(stock, stockImage, stockOHLCV);
+        return getStockInfoResponseMapper.toGetStockSummaryPreMarketInfoDto(stock, stockImage, stockOHLCV, date);
     }
 
     private StockImage getStockImage(String stockcode) {

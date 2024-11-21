@@ -38,7 +38,7 @@ public class StockController {
     @GetMapping("/{stockcode}/preOpen")
     @Operation(summary = "장 외 시간 주식 정보 조회", description = "장 외 시간의 회사 이름, 코드, 이미지, 관심 종목 여부 등을 반환합니다.")
     @ApiErrorCodes(stockErrors = {StockErrorCode.STOCK_NOT_FOUND})
-    public ApplicationResponse<GetStockPreOpenSummaryInfoDto> getStockPreOpenSummaryInfo(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
+    public ApplicationResponse<GetStockPreOpenSummaryInfoDto> getStockPreOpenSummaryInfo(
                                                                                          @PathVariable String stockcode,
                                                                                          @Parameter(description = "yyyy-MM-dd") @RequestParam
                                                                                          @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
