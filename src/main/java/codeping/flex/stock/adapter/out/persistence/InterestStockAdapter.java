@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
+import java.util.Optional;
+
 
 @Slf4j
 @PersistenceAdapter
@@ -21,9 +23,15 @@ public class InterestStockAdapter implements InterestStockPort {
     private final InterestStockMapper interestStockMapper;
 
     @Override
-    public void save(InterestStock interestStock) {
+    public InterestStock save(InterestStock interestStock) {
         InterestStockEntity entity = interestStockMapper.toEntity(interestStock);
-        interestStockRepository.save(entity);
+        return interestStockMapper.toDomain(interestStockRepository.save(entity));
+    }
+
+    @Override
+    public Optional<InterestStock> findByUserIdAndStockcode(String stockcode, Long userId) {
+        return interestStockRepository.findByUserIdAndStockcode(userId, stockcode)
+                .map(interestStockMapper::toDomain);
     }
 
     @Override

@@ -1,0 +1,3 @@
+crypto:
+  algorithm: ${ALGORITHM}
+  secret: ${SECRET}

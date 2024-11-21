@@ -14,6 +14,7 @@ import codeping.flex.stock.domain.execption.StockErrorCode;
 import codeping.flex.stock.global.annotation.architecture.ApplicationService;
 import codeping.flex.stock.global.common.exception.ApplicationException;
 import codeping.flex.stock.global.common.response.SliceResponse;
+import codeping.flex.stock.global.utils.PkEncoderUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -31,10 +32,11 @@ public class InterestStockService implements InterestStockUsecase {
     private final LoadStockPort loadStockPort;
     private final LoadStockImagePort loadStockImagePort;
     private final GetInterestStockResponseMapper getInterestStockResponseMapper;
+    private final PkEncoderUtil pkEncoderUtil;
 
     @Override
     @Transactional
-    public void addInterest(String stockCode, Long userId) {
+    public String addInterest(String stockCode, Long userId) {
         if(interestStockPort.existsByStockcodeAndUserId(stockCode, userId)){
             throw ApplicationException.from(StockErrorCode.DUPLICATE_INTEREST_STOCK);
         };
@@ -42,7 +44,8 @@ public class InterestStockService implements InterestStockUsecase {
                 () -> ApplicationException.from(StockErrorCode.STOCK_NOT_FOUND)
         );
         InterestStock interestStock = interestStockMapper.toDomain(stock, userId);
-        interestStockPort.save(interestStock);
+        InterestStock savedInterestStock = interestStockPort.save(interestStock);
+        return pkEncoderUtil.encryptValue(savedInterestStock.getId());
     }
 
     @Override
@@ -56,8 +59,10 @@ public class InterestStockService implements InterestStockUsecase {
 
     @Override
     @Transactional(readOnly = true)
-    public boolean getIsInterest(String stockCode, Long userId) {
-        return interestStockPort.existsByStockcodeAndUserId(stockCode, userId);
+    public String getIsInterest(String stockCode, Long userId) {
+        return interestStockPort.findByUserIdAndStockcode(stockCode, userId)
+                .map(interest -> pkEncoderUtil.encryptValue((interest.getId())))
+                .orElse(null);
     }
 
     @Override
@@ -68,8 +73,13 @@ public class InterestStockService implements InterestStockUsecase {
         List<InterestStock> interestStocks = interestStockSlice.getContent();
         List<StockImage>  stockImages= loadStockImagePort.loadAllByStockCode(interestStocks.stream().map(InterestStock::getStockcode).toList());
 
-        List<GetInterestStockInfoDto> response = getInterestStockResponseMapper.toDtoList(interestStocks, stockImages);
+        List<GetInterestStockInfoDto> response = getInterestStockResponseMapper.toDtoList(interestStocks, stockImages, pkEncoderUtil);
         return SliceResponse.of(response, interestStockSlice.hasNext(), interestStockSlice.isFirst(), interestStockSlice.isLast());
+    }
+
+    @Override
+    public Long getDecodedId(String encodedId){
+        return pkEncoderUtil.decryptValue(encodedId);
     }
 
 }

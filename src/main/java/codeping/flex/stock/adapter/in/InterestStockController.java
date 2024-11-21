@@ -27,27 +27,27 @@ public class InterestStockController {
     private final InterestStockUsecase interestStockUsecase;
 
     @PostMapping()
-    @Operation(summary = "관심 종목 등록", description = "관심 종목을 등록합니다.")
+    @Operation(summary = "관심 종목 등록", description = "관심 종목을 등록합니다. 요청 성공 시에 인코딩된 pk를 반환합니다.")
     @ApiErrorCodes(stockErrors = {DUPLICATE_INTEREST_STOCK, STOCK_NOT_FOUND})
     public ApplicationResponse<String> addInterestStock(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
-                                                        @RequestParam String stockcode) {
-        interestStockUsecase.addInterest(stockcode, passportInfo.userId());
-        return ApplicationResponse.onSuccess("관심 종목 등록이 성공하였습니다.");
+                                                        @RequestParam("stockcode") String stockcode) {
+        return ApplicationResponse.onSuccess(interestStockUsecase.addInterest(stockcode, passportInfo.userId()));
     }
 
     @DeleteMapping("/{interestStockId}")
     @Operation(summary = "관심 종목 삭제", description = "관심 종목을 삭제합니다.")
     @ApiErrorCodes(stockErrors = {INTEREST_STOCK_BAD_REQUEST})
     public ApplicationResponse<String> removeInterestStock(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
-                                                           @PathVariable Long interestStockId) {
-        interestStockUsecase.removeInterest(interestStockId, passportInfo.userId());
+                                                           @PathVariable("interestStockId") String interestStockId) {
+        Long decodedId = interestStockUsecase.getDecodedId(interestStockId);
+        interestStockUsecase.removeInterest(decodedId, passportInfo.userId());
         return ApplicationResponse.onSuccess("관심 종목 삭제가 성공하였습니다.");
     }
 
     @GetMapping("/{stockcode}")
-    @Operation(summary = "관심 여부 조회", description = "특정 주식에 대해 관심 여부를 조회합니다.")
-    public ApplicationResponse<Boolean> getInterestStock(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
-                                                        @PathVariable String stockcode) {
+    @Operation(summary = "관심 여부 조회", description = "특정 주식에 대해 관심 여부를 조회합니다. 관심 종목일 시에 인코딩된 pk를, 아닐 시에는 null을 반환합니다.")
+    public ApplicationResponse<String> getInterestStock(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
+                                                        @PathVariable("stockcode") String stockcode) {
         return ApplicationResponse.onSuccess(interestStockUsecase.getIsInterest(stockcode, passportInfo.userId()));
     }
 
@@ -55,8 +55,8 @@ public class InterestStockController {
     @Operation(summary = "관심 종목 조회", description = "관심 종목 목록을 조회합니다.")
     @ApiErrorCodes(stockErrors = {INVALID_PAGE_SIZE})
     public ApplicationResponse<SliceResponse<GetInterestStockInfoDto>> getInterestStocks(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
-                                                                                         @Parameter(example = "0", description = "0부터 시작합니다.") @RequestParam int page,
-                                                                                         @RequestParam int size) {
+                                                                                         @Parameter(example = "0", description = "0부터 시작합니다.") @RequestParam("page") int page,
+                                                                                         @RequestParam("size") int size) {
         if(size < 0 || page < 0) {throw new ApplicationException(INVALID_PAGE_SIZE);}
         return ApplicationResponse.onSuccess(interestStockUsecase.getInterestStocks(passportInfo.userId(), page, size));
     }
