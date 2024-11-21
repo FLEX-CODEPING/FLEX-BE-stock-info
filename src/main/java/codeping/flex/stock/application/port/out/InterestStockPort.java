@@ -4,8 +4,11 @@ import codeping.flex.stock.domain.InterestStock;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
+import java.util.Optional;
+
 public interface InterestStockPort {
-    void save(InterestStock interestStock);
+    InterestStock save(InterestStock interestStock);
+    Optional<InterestStock> findByUserIdAndStockcode(String stockcode, Long userId);
     boolean existsByIdAndUserId(Long id, Long userId);
     boolean existsByStockcodeAndUserId(String stockcode, Long userId);
     void deleteById(Long id);
