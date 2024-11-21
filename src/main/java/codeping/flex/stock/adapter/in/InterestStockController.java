@@ -27,12 +27,11 @@ public class InterestStockController {
     private final InterestStockUsecase interestStockUsecase;
 
     @PostMapping()
-    @Operation(summary = "관심 종목 등록", description = "관심 종목을 등록합니다.")
+    @Operation(summary = "관심 종목 등록", description = "관심 종목을 등록합니다. 요청 성공 시에 인코딩된 pk를 반환합니다.")
     @ApiErrorCodes(stockErrors = {DUPLICATE_INTEREST_STOCK, STOCK_NOT_FOUND})
     public ApplicationResponse<String> addInterestStock(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
                                                         @RequestParam String stockcode) {
-        interestStockUsecase.addInterest(stockcode, passportInfo.userId());
-        return ApplicationResponse.onSuccess("관심 종목 등록이 성공하였습니다.");
+        return ApplicationResponse.onSuccess(interestStockUsecase.addInterest(stockcode, passportInfo.userId()));
     }
 
     @DeleteMapping("/{interestStockId}")
@@ -45,8 +44,8 @@ public class InterestStockController {
     }
 
     @GetMapping("/{stockcode}")
-    @Operation(summary = "관심 여부 조회", description = "특정 주식에 대해 관심 여부를 조회합니다.")
-    public ApplicationResponse<Boolean> getInterestStock(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
+    @Operation(summary = "관심 여부 조회", description = "특정 주식에 대해 관심 여부를 조회합니다. 관심 종목일 시에 인코딩된 pk를, 아닐 시에는 null을 반환합니다.")
+    public ApplicationResponse<String> getInterestStock(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
                                                         @PathVariable String stockcode) {
         return ApplicationResponse.onSuccess(interestStockUsecase.getIsInterest(stockcode, passportInfo.userId()));
     }
