@@ -38,8 +38,9 @@ public class InterestStockController {
     @Operation(summary = "관심 종목 삭제", description = "관심 종목을 삭제합니다.")
     @ApiErrorCodes(stockErrors = {INTEREST_STOCK_BAD_REQUEST})
     public ApplicationResponse<String> removeInterestStock(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
-                                                           @PathVariable Long interestStockId) {
-        interestStockUsecase.removeInterest(interestStockId, passportInfo.userId());
+                                                           @PathVariable String interestStockId) {
+        Long decodedId = interestStockUsecase.getDecodedId(interestStockId);
+        interestStockUsecase.removeInterest(decodedId, passportInfo.userId());
         return ApplicationResponse.onSuccess("관심 종목 삭제가 성공하였습니다.");
     }
 

@@ -77,4 +77,9 @@ public class InterestStockService implements InterestStockUsecase {
         return SliceResponse.of(response, interestStockSlice.hasNext(), interestStockSlice.isFirst(), interestStockSlice.isLast());
     }
 
+    @Override
+    public Long getDecodedId(String encodedId){
+        return encoderUtil.decryptValue(encodedId);
+    }
+
 }

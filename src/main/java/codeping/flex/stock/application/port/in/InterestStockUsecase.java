@@ -8,4 +8,5 @@ public interface InterestStockUsecase {
     void removeInterest(Long interestStockId, Long userId);
     String getIsInterest(String stockCode, Long userId);
     SliceResponse<GetInterestStockInfoDto> getInterestStocks(Long userId, int page, int size);
+    Long getDecodedId(String encodedId);
 }
