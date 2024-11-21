@@ -6,6 +6,8 @@ import codeping.flex.stock.application.port.in.dto.GetStockPreOpenSummaryInfoDto
 import codeping.flex.stock.application.port.in.dto.GetStockSummaryInfoDto;
 import codeping.flex.stock.domain.execption.StockErrorCode;
 import codeping.flex.stock.global.annotation.architecture.WebAdapter;
+import codeping.flex.stock.global.annotation.passport.Passport;
+import codeping.flex.stock.global.annotation.passport.PassportInfo;
 import codeping.flex.stock.global.annotation.swagger.ApiErrorCodes;
 import codeping.flex.stock.global.common.response.ApplicationResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,14 +30,16 @@ public class StockController {
     @GetMapping("/{stockcode}")
     @Operation(summary = "주식 정보 조회", description = "회사 이름, 코드, 이미지, 관심 종목 여부 등을 반환합니다.")
     @ApiErrorCodes(stockErrors = {StockErrorCode.STOCK_NOT_FOUND})
-    public ApplicationResponse<GetStockSummaryInfoDto> getStockSummaryInfo(@PathVariable String stockcode) {
+    public ApplicationResponse<GetStockSummaryInfoDto> getStockSummaryInfo(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
+                                                                           @PathVariable String stockcode) {
         return ApplicationResponse.onSuccess(stockUsecase.getStockSummaryInfo(stockcode));
     }
 
     @GetMapping("/{stockcode}/preOpen")
     @Operation(summary = "장 외 시간 주식 정보 조회", description = "장 외 시간의 회사 이름, 코드, 이미지, 관심 종목 여부 등을 반환합니다.")
     @ApiErrorCodes(stockErrors = {StockErrorCode.STOCK_NOT_FOUND})
-    public ApplicationResponse<GetStockPreOpenSummaryInfoDto> getStockPreOpenSummaryInfo(@PathVariable String stockcode,
+    public ApplicationResponse<GetStockPreOpenSummaryInfoDto> getStockPreOpenSummaryInfo(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
+                                                                                         @PathVariable String stockcode,
                                                                                          @Parameter(description = "yyyy-MM-dd") @RequestParam
                                                                                          @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
         return ApplicationResponse.onSuccess(stockUsecase.getStockPreOpenSummaryInfo(stockcode, date));
@@ -44,7 +48,8 @@ public class StockController {
     @GetMapping("/market/preOpen")
     @Operation(summary = "장외 시간 주식 ohlcv & 시가총액 조회", description = "장외 시간 전일 주식 시가, 고가, 저가, 종가, 거래량, 시가 총액 정보")
     @ApiErrorCodes(stockErrors = {StockErrorCode.STOCK_OHLCV_NOT_FOUND})
-    public ApplicationResponse<GetStockPreMarketInfoDto> getStockPreMarketInfo(@RequestParam String stockcode,
+    public ApplicationResponse<GetStockPreMarketInfoDto> getStockPreMarketInfo(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
+                                                                               @RequestParam String stockcode,
                                                                                @Parameter(description = "yyyy-MM-dd") @RequestParam
                                                                                @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
         return ApplicationResponse.onSuccess(stockUsecase.getStockPreMarketInfo(stockcode, date));
