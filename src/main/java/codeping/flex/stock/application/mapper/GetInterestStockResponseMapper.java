@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public interface GetInterestStockResponseMapper {
 
     @Mappings({
-            @Mapping(target = "id", source = "interestStock.id", qualifiedByName = "encryptId"),
+            @Mapping(target = "interestStockId", source = "interestStock.id", qualifiedByName = "encryptId"),
             @Mapping(target = "stockcode", source = "interestStock.stockcode"),
             @Mapping(target = "corpName", source = "interestStock.corpName"),
             @Mapping(target = "symbolImageUrl", source = "stockImage", qualifiedByName = "toSymbolImageUrl")

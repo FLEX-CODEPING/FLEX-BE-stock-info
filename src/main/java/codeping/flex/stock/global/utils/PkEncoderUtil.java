@@ -20,7 +20,7 @@ public class PkEncoderUtil {
 
     private final String algorithm;
     private final String secret;
-    private SecretKey secretKey;
+    private static SecretKey secretKey;
 
     public PkEncoderUtil(
             @Value("${crypto.algorithm}") String algorithm,
@@ -54,7 +54,8 @@ public class PkEncoderUtil {
      *
      * @param value 암호화할 Long 값
      * @return 암호화된 Base64 URL-safe 문자열
-     */    public String encryptValue(Long value) {
+     */
+    public String encryptValue(Long value) {
         try {
             Cipher cipher = Cipher.getInstance(algorithm);
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);

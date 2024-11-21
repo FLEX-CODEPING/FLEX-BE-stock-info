@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class GetInterestStockInfoDto {
-    private String id;
+    private String interestStockId;
     @Schema(description = "종목 코드")
     private String stockcode;
     @Schema(description = "회사명")
