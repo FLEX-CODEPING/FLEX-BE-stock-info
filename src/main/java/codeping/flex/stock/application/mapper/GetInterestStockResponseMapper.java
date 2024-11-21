@@ -3,10 +3,8 @@ package codeping.flex.stock.application.mapper;
 import codeping.flex.stock.application.port.in.dto.GetInterestStockInfoDto;
 import codeping.flex.stock.domain.InterestStock;
 import codeping.flex.stock.domain.StockImage;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
-import org.mapstruct.Named;
+import codeping.flex.stock.global.utils.PkEncoderUtil;
+import org.mapstruct.*;
 
 import java.util.List;
 import java.util.Map;
@@ -17,17 +15,21 @@ import java.util.stream.Collectors;
 public interface GetInterestStockResponseMapper {
 
     @Mappings({
-            @Mapping(target = "id", source = "interestStock.id"),
+            @Mapping(target = "id", source = "interestStock.id", qualifiedByName = "encryptId"),
             @Mapping(target = "stockcode", source = "interestStock.stockcode"),
             @Mapping(target = "corpName", source = "interestStock.corpName"),
             @Mapping(target = "symbolImageUrl", source = "stockImage", qualifiedByName = "toSymbolImageUrl")
     })
-    GetInterestStockInfoDto toDto(InterestStock interestStock, StockImage stockImage);
+    GetInterestStockInfoDto toDto(
+            InterestStock interestStock,
+            StockImage stockImage,
+            @Context PkEncoderUtil pkEncoderUtil);
 
     default List<GetInterestStockInfoDto> toDtoList(
             List<InterestStock> interestStocks,
-            List<StockImage> stockImages
-    ) {
+            List<StockImage> stockImages,
+            @Context PkEncoderUtil pkEncoderUtil) {
+
         Map<String, StockImage> stockImageMap = stockImages.stream()
                 .collect(Collectors.toMap(
                         StockImage::getStockcode,
@@ -38,15 +40,19 @@ public interface GetInterestStockResponseMapper {
         return interestStocks.stream()
                 .map(interestStock -> {
                     StockImage stockImage = stockImageMap.get(interestStock.getStockcode());
-                    return toDto(interestStock, stockImage);
+                    return toDto(interestStock, stockImage, pkEncoderUtil);
                 })
                 .collect(Collectors.toList());
     }
-
-
 
     @Named("toSymbolImageUrl")
     default String toSymbolImageUrl(StockImage stockImage) {
         return stockImage != null ? stockImage.getImageUrl() : null;
     }
+
+    @Named("encryptId")
+    default String encryptId(Long id, @Context PkEncoderUtil pkEncoderUtil) {
+        return pkEncoderUtil.encryptValue(id);
+    }
 }
+

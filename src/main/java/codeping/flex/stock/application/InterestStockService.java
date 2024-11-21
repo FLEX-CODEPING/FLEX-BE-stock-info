@@ -32,7 +32,7 @@ public class InterestStockService implements InterestStockUsecase {
     private final LoadStockPort loadStockPort;
     private final LoadStockImagePort loadStockImagePort;
     private final GetInterestStockResponseMapper getInterestStockResponseMapper;
-    private final PkEncoderUtil encoderUtil;
+    private final PkEncoderUtil pkEncoderUtil;
 
     @Override
     @Transactional
@@ -45,7 +45,7 @@ public class InterestStockService implements InterestStockUsecase {
         );
         InterestStock interestStock = interestStockMapper.toDomain(stock, userId);
         InterestStock savedInterestStock = interestStockPort.save(interestStock);
-        return encoderUtil.encryptValue(savedInterestStock.getId());
+        return pkEncoderUtil.encryptValue(savedInterestStock.getId());
     }
 
     @Override
@@ -61,7 +61,7 @@ public class InterestStockService implements InterestStockUsecase {
     @Transactional(readOnly = true)
     public String getIsInterest(String stockCode, Long userId) {
         return interestStockPort.findByUserIdAndStockcode(stockCode, userId)
-                .map(interest -> encoderUtil.encryptValue((interest.getId())))
+                .map(interest -> pkEncoderUtil.encryptValue((interest.getId())))
                 .orElse(null);
     }
 
@@ -73,13 +73,13 @@ public class InterestStockService implements InterestStockUsecase {
         List<InterestStock> interestStocks = interestStockSlice.getContent();
         List<StockImage>  stockImages= loadStockImagePort.loadAllByStockCode(interestStocks.stream().map(InterestStock::getStockcode).toList());
 
-        List<GetInterestStockInfoDto> response = getInterestStockResponseMapper.toDtoList(interestStocks, stockImages);
+        List<GetInterestStockInfoDto> response = getInterestStockResponseMapper.toDtoList(interestStocks, stockImages, pkEncoderUtil);
         return SliceResponse.of(response, interestStockSlice.hasNext(), interestStockSlice.isFirst(), interestStockSlice.isLast());
     }
 
     @Override
     public Long getDecodedId(String encodedId){
-        return encoderUtil.decryptValue(encodedId);
+        return pkEncoderUtil.decryptValue(encodedId);
     }
 
 }
