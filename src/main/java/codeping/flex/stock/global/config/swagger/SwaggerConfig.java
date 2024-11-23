@@ -54,7 +54,7 @@ public class SwaggerConfig {
                                 .in(SecurityScheme.In.HEADER)
                                 .name("Authorization")))
                 .servers(List.of(server))
-                .info(new Info().title("FLEX 유저 API").version("1.0"))
+                .info(new Info().title("FLEX 주식 종목 API").version("1.0"))
                 .addSecurityItem(new SecurityRequirement().addList("bearerAuth"));
     }
 
