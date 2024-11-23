@@ -8,6 +8,7 @@ spring:
       - redis.yml
       - swagger.yml
       - crypto.yml
+      - elasticsearch.yml
   application:
     name: stock-service
 
