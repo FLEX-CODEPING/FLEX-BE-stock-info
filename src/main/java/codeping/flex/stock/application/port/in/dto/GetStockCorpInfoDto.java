@@ -17,9 +17,6 @@ public class GetStockCorpInfoDto {
     @Schema(description = "CEO 이름", example = "김기남")
     private String ceoName;
 
-    @Schema(description = "기업 분류", example = "Y")
-    private String corpClass;
-
     @Schema(description = "법인 등록 번호", example = "1234567890123")
     private String corpRegistNo;
 
