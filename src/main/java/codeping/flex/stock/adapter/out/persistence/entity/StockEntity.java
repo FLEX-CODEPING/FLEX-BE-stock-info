@@ -22,4 +22,7 @@ public class StockEntity {
 
     @Column(length = 50)
     private String market;
+
+    @Column
+    private String imageUrl;
 }

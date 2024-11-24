@@ -13,4 +13,6 @@ public final class Stock {
     private String stockName;
 
     private String market;
+
+    private String imageUrl;
 }

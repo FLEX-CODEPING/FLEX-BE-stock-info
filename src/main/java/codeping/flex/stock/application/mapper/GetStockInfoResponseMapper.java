@@ -20,19 +20,19 @@ public interface GetStockInfoResponseMapper {
      */
     @Mapping(target = "stockcode", source = "stock.stockcode")
     @Mapping(target = "stockName", source = "stock.stockName")
-    @Mapping(target = "symbolImageUrl", source = "stockImage", qualifiedByName = "toSymbolImageUrl")
-    GetStockSummaryInfoDto toGetStockSummaryInfoDto(Stock stock, StockImage stockImage, CorpInfo corpInfo);
+    @Mapping(target = "symbolImageUrl", source = "stock.imageUrl")
+    GetStockSummaryInfoDto toGetStockSummaryInfoDto(Stock stock, CorpInfo corpInfo);
 
     /**
      * 장 외 시간대의 주식 기본 정보 dto mapper
      */
     @Mapping(target = "stockcode", source = "stock.stockcode")
     @Mapping(target = "stockName", source = "stock.stockName")
-    @Mapping(target = "symbolImageUrl", source = "stockImage", qualifiedByName = "toSymbolImageUrl")
+    @Mapping(target = "symbolImageUrl", source = "stock.imageUrl")
     @Mapping(target = "closePrice", source = "stockOHLCV.closePrice")
     @Mapping(target = "volume", source = "stockOHLCV.volume")
     @Mapping(target = "changeRate", source = "stockOHLCV.changeRate")
-    GetStockPreOpenSummaryInfoDto toGetStockSummaryPreMarketInfoDto(Stock stock, StockImage stockImage, StockOHLCV stockOHLCV, CorpInfo corpInfo, LocalDate date);
+    GetStockPreOpenSummaryInfoDto toGetStockSummaryPreMarketInfoDto(Stock stock, StockOHLCV stockOHLCV, CorpInfo corpInfo, LocalDate date);
 
     @Mapping(target = "ohlcvInfo", source = "stockOHLCV")
     @Mapping(target = "marketCapInfo", source = "stockMarketCap")
@@ -48,9 +48,4 @@ public interface GetStockInfoResponseMapper {
     GetStockPreMarketInfoDto.StockMarketCapInfoDto toStockMarketCapInfoDto(StockMarketCap stockMarketCap);
 
     GetStockCorpInfoDto toGetStockCorpInfoDto(CorpInfo corpInfo);
-
-    @Named("toSymbolImageUrl")
-    default String toSymbolImageUrl(StockImage stockImage) {
-        return stockImage == null ? null : stockImage.getImageUrl();
-    }
 }
