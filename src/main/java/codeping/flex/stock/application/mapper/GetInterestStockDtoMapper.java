@@ -12,7 +12,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
-public interface GetInterestStockResponseMapper {
+public interface GetInterestStockDtoMapper {
 
     @Mappings({
             @Mapping(target = "interestStockId", source = "interestStock.id", qualifiedByName = "encryptId"),
