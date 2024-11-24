@@ -11,10 +11,12 @@ import java.time.LocalDate;
 public class GetStockPreOpenSummaryInfoDto {
     @Schema(description = "종목 코드")
     private String stockcode;
-    @Schema(description = "회사명")
+    @Schema(description = "종목명")
     private String stockName;
     @Schema(description = "로고 url")
     private String symbolImageUrl;
+    @Schema(description = "기업 정보")
+    private GetStockCorpInfoDto corpInfo;
     @Schema(description = "기준일")
     private LocalDate date;
     @Schema(description = "종가")
@@ -24,3 +26,5 @@ public class GetStockPreOpenSummaryInfoDto {
     @Schema(description = "변화율")
     private Float changeRate;
 }
+
+
