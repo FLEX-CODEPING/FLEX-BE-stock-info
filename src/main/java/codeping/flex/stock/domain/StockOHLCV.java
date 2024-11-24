@@ -22,4 +22,6 @@ public final class StockOHLCV {
     private Long volume;
 
     private Float changeRate;
+
+    private Stock ticker;
 }

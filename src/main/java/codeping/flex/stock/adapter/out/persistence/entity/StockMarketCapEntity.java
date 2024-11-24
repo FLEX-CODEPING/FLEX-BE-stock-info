@@ -1,10 +1,7 @@
 package codeping.flex.stock.adapter.out.persistence.entity;
 
 import codeping.flex.stock.adapter.out.persistence.entity.pk.StockIDEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,4 +26,8 @@ public class StockMarketCapEntity {
 
     @Column(name = "listed_shares")
     private Long listedShares;
+
+    @ManyToOne
+    @JoinColumn(name = "ticker", referencedColumnName = "stockcode", insertable = false, updatable = false)
+    private StockEntity ticker;
 }
