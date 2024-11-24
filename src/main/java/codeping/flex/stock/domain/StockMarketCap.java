@@ -18,5 +18,5 @@ public final class StockMarketCap {
 
     private Long listedShares;
 
-    private Stock ticker;
+    private Stock stock;
 }

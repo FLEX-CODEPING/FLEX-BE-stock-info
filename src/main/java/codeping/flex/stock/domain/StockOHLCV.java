@@ -23,5 +23,5 @@ public final class StockOHLCV {
 
     private Float changeRate;
 
-    private Stock ticker;
+    private Stock stock;
 }

@@ -28,6 +28,6 @@ public class StockMarketCapEntity {
     private Long listedShares;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ticker", referencedColumnName = "stockcode", insertable = false, updatable = false)
-    private StockEntity ticker;
+    @JoinColumn(name = "stock_id", referencedColumnName = "stockcode", insertable = false, updatable = false)
+    private StockEntity stock;
 }

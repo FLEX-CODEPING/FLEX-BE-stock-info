@@ -18,18 +18,18 @@ public interface GetStockInfoResponseMapper {
     /**
      * 장 중 시간대의 주식 기본 정보 dto mapper
      */
-    @Mapping(target = "stockcode", source = "stockWithCorpInfo.ticker.stockcode")
-    @Mapping(target = "stockName", source = "stockWithCorpInfo.ticker.stockName")
-    @Mapping(target = "symbolImageUrl", source = "stockWithCorpInfo.ticker.imageUrl")
+    @Mapping(target = "stockcode", source = "stockWithCorpInfo.stock.stockcode")
+    @Mapping(target = "stockName", source = "stockWithCorpInfo.stock.stockName")
+    @Mapping(target = "symbolImageUrl", source = "stockWithCorpInfo.stock.imageUrl")
     @Mapping(target = "corpInfo", source = "stockWithCorpInfo")
     GetStockSummaryInfoDto toGetStockSummaryInfoDto(CorpInfo stockWithCorpInfo);
 
     /**
      * 장 외 시간대의 주식 기본 정보 dto mapper
      */
-    @Mapping(target = "stockcode", source = "stockWithCorpInfo.ticker.stockcode")
-    @Mapping(target = "stockName", source = "stockWithCorpInfo.ticker.stockName")
-    @Mapping(target = "symbolImageUrl", source = "stockWithCorpInfo.ticker.imageUrl")
+    @Mapping(target = "stockcode", source = "stockWithCorpInfo.stock.stockcode")
+    @Mapping(target = "stockName", source = "stockWithCorpInfo.stock.stockName")
+    @Mapping(target = "symbolImageUrl", source = "stockWithCorpInfo.stock.imageUrl")
     @Mapping(target = "closePrice", source = "stockOHLCV.closePrice")
     @Mapping(target = "volume", source = "stockOHLCV.volume")
     @Mapping(target = "changeRate", source = "stockOHLCV.changeRate")

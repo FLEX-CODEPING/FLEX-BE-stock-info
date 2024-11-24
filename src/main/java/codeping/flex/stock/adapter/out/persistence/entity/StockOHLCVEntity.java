@@ -34,6 +34,6 @@ public class StockOHLCVEntity {
     private Float changeRate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ticker", referencedColumnName = "stockcode", insertable = false, updatable = false)
-    private StockEntity ticker;
+    @JoinColumn(name = "stock_id", referencedColumnName = "stockcode", insertable = false, updatable = false)
+    private StockEntity stock;
 }

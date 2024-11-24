@@ -22,5 +22,5 @@ public final class CorpInfo {
     private LocalDate establishmentDate;
     private String accountingMonth;
     private String industryName;
-    private Stock ticker;
+    private Stock stock;
 }
