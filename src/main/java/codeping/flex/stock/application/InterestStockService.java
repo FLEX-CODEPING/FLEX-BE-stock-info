@@ -1,7 +1,7 @@
 package codeping.flex.stock.application;
 
 import codeping.flex.stock.adapter.out.persistence.mapper.InterestStockMapper;
-import codeping.flex.stock.application.mapper.GetInterestStockResponseMapper;
+import codeping.flex.stock.application.mapper.GetInterestStockDtoMapper;
 import codeping.flex.stock.application.port.in.InterestStockUsecase;
 import codeping.flex.stock.application.port.in.dto.GetInterestStockInfoDto;
 import codeping.flex.stock.application.port.out.InterestStockPort;
@@ -31,7 +31,7 @@ public class InterestStockService implements InterestStockUsecase {
     private final InterestStockMapper interestStockMapper;
     private final LoadStockPort loadStockPort;
     private final LoadStockImagePort loadStockImagePort;
-    private final GetInterestStockResponseMapper getInterestStockResponseMapper;
+    private final GetInterestStockDtoMapper getInterestStockDtoMapper;
     private final PkEncoderUtil pkEncoderUtil;
 
     @Override
@@ -73,7 +73,7 @@ public class InterestStockService implements InterestStockUsecase {
         List<InterestStock> interestStocks = interestStockSlice.getContent();
         List<StockImage>  stockImages= loadStockImagePort.loadAllByStockCode(interestStocks.stream().map(InterestStock::getStockcode).toList());
 
-        List<GetInterestStockInfoDto> response = getInterestStockResponseMapper.toDtoList(interestStocks, stockImages, pkEncoderUtil);
+        List<GetInterestStockInfoDto> response = getInterestStockDtoMapper.toDtoList(interestStocks, stockImages, pkEncoderUtil);
         return SliceResponse.of(response, interestStockSlice.hasNext(), interestStockSlice.isFirst(), interestStockSlice.isLast());
     }
 

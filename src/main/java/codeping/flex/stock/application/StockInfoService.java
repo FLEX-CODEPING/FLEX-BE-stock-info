@@ -7,10 +7,7 @@ import codeping.flex.stock.application.port.in.StockInfoUsecase;
 import codeping.flex.stock.application.port.in.dto.GetStockPreMarketInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockPreOpenSummaryInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockSummaryInfoDto;
-import codeping.flex.stock.application.port.out.LoadStockImagePort;
-import codeping.flex.stock.application.port.out.LoadStockMarketCapPort;
-import codeping.flex.stock.application.port.out.LoadStockOHLCVPort;
-import codeping.flex.stock.application.port.out.LoadStockPort;
+import codeping.flex.stock.application.port.out.*;
 import codeping.flex.stock.domain.*;
 import codeping.flex.stock.domain.execption.StockErrorCode;
 import codeping.flex.stock.global.annotation.architecture.ApplicationService;
@@ -29,6 +26,8 @@ public class StockInfoService implements StockInfoUsecase {
     private final LoadStockOHLCVPort loadStockOHLCVPort;
     private final LoadStockMarketCapPort loadStockMarketCapPort;
     private final LoadStockImagePort loadStockImagePort;
+    private final LoadCorpInfoPort loadCorpInfoPort;
+
     private final GetStockInfoResponseMapper getStockInfoResponseMapper;
     private final StockIDMapper stockIDMapper;
 
@@ -36,15 +35,17 @@ public class StockInfoService implements StockInfoUsecase {
     public GetStockSummaryInfoDto getStockSummaryInfo(String stockcode) {
         Stock stock = getStock(stockcode);
         StockImage stockImage = getStockImage(stockcode);
-        return getStockInfoResponseMapper.toGetStockSummaryInfoDto(stock, stockImage);
+        CorpInfo corpInfo = getCorpInfo(stockcode);
+        return getStockInfoResponseMapper.toGetStockSummaryInfoDto(stock, stockImage, corpInfo);
     }
 
     @Override
     public GetStockPreOpenSummaryInfoDto getStockPreOpenSummaryInfo(String stockcode, LocalDate date) {
         Stock stock = getStock(stockcode);
         StockImage stockImage = getStockImage(stockcode);
+        CorpInfo corpInfo = getCorpInfo(stockcode);
         StockOHLCV stockOHLCV = getStockOHLCV(stockcode, date);
-        return getStockInfoResponseMapper.toGetStockSummaryPreMarketInfoDto(stock, stockImage, stockOHLCV, date);
+        return getStockInfoResponseMapper.toGetStockSummaryPreMarketInfoDto(stock, stockImage, stockOHLCV, corpInfo, date);
     }
 
     private StockImage getStockImage(String stockcode) {
@@ -54,6 +55,10 @@ public class StockInfoService implements StockInfoUsecase {
     private Stock getStock(String stockcode) {
         return loadStockPort.loadByStockCode(stockcode).orElseThrow(() ->
                 ApplicationException.from(StockErrorCode.STOCK_NOT_FOUND));
+    }
+
+    private CorpInfo getCorpInfo(String stockcode) {
+        return loadCorpInfoPort.loadByStockcode(stockcode).orElse(null);
     }
 
     @Override

@@ -12,12 +12,12 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
-public interface GetInterestStockResponseMapper {
+public interface GetInterestStockDtoMapper {
 
     @Mappings({
             @Mapping(target = "interestStockId", source = "interestStock.id", qualifiedByName = "encryptId"),
             @Mapping(target = "stockcode", source = "interestStock.stockcode"),
-            @Mapping(target = "corpName", source = "interestStock.corpName"),
+            @Mapping(target = "stockName", source = "interestStock.stockName"),
             @Mapping(target = "symbolImageUrl", source = "stockImage", qualifiedByName = "toSymbolImageUrl")
     })
     GetInterestStockInfoDto toDto(

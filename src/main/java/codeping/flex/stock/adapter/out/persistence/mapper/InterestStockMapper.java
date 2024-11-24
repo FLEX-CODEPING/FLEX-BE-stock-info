@@ -1,6 +1,7 @@
 package codeping.flex.stock.adapter.out.persistence.mapper;
 
 import codeping.flex.stock.adapter.out.persistence.entity.InterestStockEntity;
+import codeping.flex.stock.adapter.out.persistence.mapper.common.EntityMapper;
 import codeping.flex.stock.domain.InterestStock;
 import codeping.flex.stock.domain.Stock;
 import org.mapstruct.Mapper;
@@ -14,6 +15,6 @@ public interface InterestStockMapper extends EntityMapper<InterestStockEntity, I
 
     @Mapping(target = "userId", source = "userId")
     @Mapping(target = "stockcode", source = "stock.stockcode")
-    @Mapping(target = "corpName", source = "stock.corpName")
+    @Mapping(target = "stockName", source = "stock.stockName")
     InterestStock toDomain(Stock stock, Long userId);
 }

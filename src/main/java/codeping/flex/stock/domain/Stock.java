@@ -10,7 +10,7 @@ import lombok.Getter;
 public final class Stock {
     private String stockcode;
 
-    private String corpName;
+    private String stockName;
 
     private String market;
 }

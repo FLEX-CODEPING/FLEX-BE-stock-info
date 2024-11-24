@@ -9,8 +9,8 @@ import lombok.Getter;
 public class GetStockAutoCompleteDto {
     @Schema(description = "종목 코드")
     private String stockcode;
-    @Schema(description = "회사명")
-    private String corpName;
+    @Schema(description = "종목명")
+    private String stockName;
     @Schema(description = "주식 시장")
     private String market;
 }

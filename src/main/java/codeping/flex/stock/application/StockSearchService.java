@@ -26,7 +26,7 @@ public class StockSearchService implements StockSearchUsecase {
         if (isNumeric(prefix)) {
             return autoCompleteByStockcode(prefix, pageRequest);
         }
-        return autoCompleteByCorpName(prefix, pageRequest);
+        return autoCompleteByStockName(prefix, pageRequest);
     }
 
     @Override
@@ -35,8 +35,8 @@ public class StockSearchService implements StockSearchUsecase {
         if(searchType.equals("stockcode")){
             return autoCompleteByStockcode(prefix, pageRequest);
         }
-        else if(searchType.equals("corpName")){
-            return autoCompleteByCorpName(prefix, pageRequest);
+        else if(searchType.equals("stockName")){
+            return autoCompleteByStockName(prefix, pageRequest);
         }
         else return null;
     }
@@ -47,8 +47,8 @@ public class StockSearchService implements StockSearchUsecase {
                 .toList();
     }
 
-    private List<GetStockAutoCompleteDto> autoCompleteByCorpName(String prefix, PageRequest pageRequest) {
-        return searchStockDocumentAdapter.findByCorpNamePrefix(prefix, pageRequest)
+    private List<GetStockAutoCompleteDto> autoCompleteByStockName(String prefix, PageRequest pageRequest) {
+        return searchStockDocumentAdapter.findByStockNamePrefix(prefix, pageRequest)
                 .stream().map(getStockAutoCompleteDtoMapper::toDto)
                 .toList();
     }

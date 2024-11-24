@@ -18,7 +18,7 @@ public class StockEntity {
     private String stockcode;
 
     @Column(length = 50)
-    private String corpName;
+    private String stockName;
 
     @Column(length = 50)
     private String market;

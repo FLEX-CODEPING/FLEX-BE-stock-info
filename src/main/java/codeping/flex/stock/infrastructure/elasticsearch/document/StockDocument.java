@@ -17,24 +17,24 @@ public class StockDocument {
 
     @Id
     @Field(type = FieldType.Text)
-    private String id;
+    private String stockcode;
 
     @Field(type = FieldType.Text, name = "stockcode", analyzer = "my-nori-analyzer")
-    private String stockcode;
+    private String stockcodeText;
 
     @JsonProperty("corp_name")
     @Field(type = FieldType.Text, name = "corp_name", analyzer = "my-nori-analyzer")
-    private String corpName;
+    private String stockName;
 
     @Field(type = FieldType.Text, analyzer = "my-nori-analyzer")
     private String market;
 
     @Builder
-    public StockDocument(String stockcode, String corpName, String market) {
-        this.id = stockcode;
-        this.corpName = corpName;
-        this.market = market;
+    public StockDocument(String stockcode, String stockName, String market) {
         this.stockcode = stockcode;
+        this.stockName = stockName;
+        this.market = market;
+        this.stockcodeText = stockcode;
     }
 
 }
