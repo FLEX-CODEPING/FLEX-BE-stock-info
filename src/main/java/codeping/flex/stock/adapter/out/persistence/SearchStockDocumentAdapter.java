@@ -24,8 +24,8 @@ public class SearchStockDocumentAdapter implements SearchStockDocumentPort {
     }
 
     @Override
-    public List<Stock> findByCorpNamePrefix(String corpName, Pageable pageable) {
-        return stockDocumentRepository.findByCorpNamePrefix(corpName, pageable)
+    public List<Stock> findByStockNamePrefix(String stockName, Pageable pageable) {
+        return stockDocumentRepository.findByStockNamePrefix(stockName, pageable)
                 .stream().map(stockDocumentMapper::toDomain)
                 .toList();
     }

@@ -17,7 +17,7 @@ public interface GetInterestStockResponseMapper {
     @Mappings({
             @Mapping(target = "interestStockId", source = "interestStock.id", qualifiedByName = "encryptId"),
             @Mapping(target = "stockcode", source = "interestStock.stockcode"),
-            @Mapping(target = "corpName", source = "interestStock.corpName"),
+            @Mapping(target = "stockName", source = "interestStock.stockName"),
             @Mapping(target = "symbolImageUrl", source = "stockImage", qualifiedByName = "toSymbolImageUrl")
     })
     GetInterestStockInfoDto toDto(

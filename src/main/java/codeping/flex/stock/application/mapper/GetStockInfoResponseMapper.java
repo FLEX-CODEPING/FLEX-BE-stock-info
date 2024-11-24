@@ -18,12 +18,12 @@ import java.time.LocalDate;
 public interface GetStockInfoResponseMapper {
 
     @Mapping(target = "stockcode", source = "stock.stockcode")
-    @Mapping(target = "corpName", source = "stock.corpName")
+    @Mapping(target = "stockName", source = "stock.stockName")
     @Mapping(target = "symbolImageUrl", source = "stockImage", qualifiedByName = "toSymbolImageUrl")
     GetStockSummaryInfoDto toGetStockSummaryInfoDto(Stock stock, StockImage stockImage);
 
     @Mapping(target = "stockcode", source = "stock.stockcode")
-    @Mapping(target = "corpName", source = "stock.corpName")
+    @Mapping(target = "stockName", source = "stock.stockName")
     @Mapping(target = "symbolImageUrl", source = "stockImage", qualifiedByName = "toSymbolImageUrl")
     @Mapping(target = "closePrice", source = "stockOHLCV.closePrice")
     @Mapping(target = "volume", source = "stockOHLCV.volume")

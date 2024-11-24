@@ -20,15 +20,15 @@ public class InterestStockEntity extends BaseTimeEntity {
     private Long userId;
 
     @Column(nullable = false)
-    private String corpName;
+    private String stockName;
 
     @Column(nullable = false)
     private String stockcode;
 
     @Builder
-    public InterestStockEntity(Long userId, String corpName, String stockcode) {
+    public InterestStockEntity(Long userId, String stockName, String stockcode) {
         this.userId = userId;
-        this.corpName = corpName;
+        this.stockName = stockName;
         this.stockcode = stockcode;
     }
 }

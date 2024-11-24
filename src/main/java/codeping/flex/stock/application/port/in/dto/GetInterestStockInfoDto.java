@@ -11,7 +11,7 @@ public class GetInterestStockInfoDto {
     @Schema(description = "종목 코드")
     private String stockcode;
     @Schema(description = "회사명")
-    private String corpName;
+    private String stockName;
     @Schema(description = "로고 url")
     private String symbolImageUrl;
 }

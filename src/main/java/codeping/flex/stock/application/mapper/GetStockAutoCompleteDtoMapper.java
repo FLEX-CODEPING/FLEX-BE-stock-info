@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 public interface GetStockAutoCompleteDtoMapper {
 
     @Mapping(target = "stockcode", source = "stock.stockcode")
-    @Mapping(target = "corpName", source = "stock.corpName")
+    @Mapping(target = "stockName", source = "stock.stockName")
     @Mapping(target = "market", source = "stock.market")
     GetStockAutoCompleteDto toDto(Stock stock);
 }
