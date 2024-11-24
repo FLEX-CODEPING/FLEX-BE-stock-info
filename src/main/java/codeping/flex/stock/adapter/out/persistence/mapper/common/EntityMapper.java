@@ -1,4 +1,4 @@
-package codeping.flex.stock.adapter.out.persistence.mapper;
+package codeping.flex.stock.adapter.out.persistence.mapper.common;
 
 public interface EntityMapper<ENTITY, DOMAIN> {
 
