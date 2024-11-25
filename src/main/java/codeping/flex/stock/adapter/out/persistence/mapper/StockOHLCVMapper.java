@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring", uses = {StockIDMapper.class}, disableSubMappingMethodsGeneration = true)
+@Mapper(componentModel = "spring", uses = {StockIDMapper.class,  StockMapper.class}, disableSubMappingMethodsGeneration = true)
 public interface StockOHLCVMapper extends ReadOnlyEntityMapper<StockOHLCVEntity, StockOHLCV> {
     StockOHLCVMapper INSTANCE = Mappers.getMapper(StockOHLCVMapper.class);
 

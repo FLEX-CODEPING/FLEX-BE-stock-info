@@ -7,12 +7,10 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @Builder
-public final class Stock {
+public final class StockDocumentDomain {
     private String stockcode;
 
     private String stockName;
 
     private String market;
-
-    private String imageUrl;
 }

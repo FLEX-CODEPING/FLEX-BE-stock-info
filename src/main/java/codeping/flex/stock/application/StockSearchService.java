@@ -4,6 +4,7 @@ import codeping.flex.stock.adapter.out.persistence.SearchStockDocumentAdapter;
 import codeping.flex.stock.application.mapper.GetStockAutoCompleteDtoMapper;
 import codeping.flex.stock.application.port.in.StockSearchUsecase;
 import codeping.flex.stock.application.port.in.dto.GetStockAutoCompleteDto;
+import codeping.flex.stock.application.port.out.SearchStockDocumentPort;
 import codeping.flex.stock.global.annotation.architecture.ApplicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -17,7 +18,7 @@ import static org.apache.commons.lang3.StringUtils.isNumeric;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class StockSearchService implements StockSearchUsecase {
-    private final SearchStockDocumentAdapter searchStockDocumentAdapter;
+    private final SearchStockDocumentPort searchStockDocumentPort;
     private final GetStockAutoCompleteDtoMapper getStockAutoCompleteDtoMapper;
 
     @Override
@@ -42,13 +43,13 @@ public class StockSearchService implements StockSearchUsecase {
     }
 
     private List<GetStockAutoCompleteDto> autoCompleteByStockcode(String prefix, PageRequest pageRequest) {
-        return searchStockDocumentAdapter.findByStockcodePrefix(prefix, pageRequest)
+        return searchStockDocumentPort.findByStockcodePrefix(prefix, pageRequest)
                 .stream().map(getStockAutoCompleteDtoMapper::toDto)
                 .toList();
     }
 
     private List<GetStockAutoCompleteDto> autoCompleteByStockName(String prefix, PageRequest pageRequest) {
-        return searchStockDocumentAdapter.findByStockNamePrefix(prefix, pageRequest)
+        return searchStockDocumentPort.findByStockNamePrefix(prefix, pageRequest)
                 .stream().map(getStockAutoCompleteDtoMapper::toDto)
                 .toList();
     }

@@ -31,6 +31,11 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    out-of-order: false
+    locations: classpath:db/migration/dev
 
 logging:
   level:
@@ -48,5 +53,25 @@ logging:
 ---
 spring.config.activate.on-profile: dev
 
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    out-of-order: false
+    locations: classpath:db/migration/dev
+
 ---
 spring.config.activate.on-profile: prod
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    out-of-order: false
+    locations: classpath:db/migration/prod

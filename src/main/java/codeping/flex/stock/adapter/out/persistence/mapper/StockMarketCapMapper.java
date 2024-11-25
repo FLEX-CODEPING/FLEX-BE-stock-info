@@ -6,7 +6,7 @@ import codeping.flex.stock.domain.StockMarketCap;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = {StockIDMapper.class}, disableSubMappingMethodsGeneration = true)
+@Mapper(componentModel = "spring", uses = {StockIDMapper.class, StockMapper.class}, disableSubMappingMethodsGeneration = true)
 public interface StockMarketCapMapper extends ReadOnlyEntityMapper<StockMarketCapEntity, StockMarketCap> {
     @Override
     @Mapping(target = "stockID", source = "stockID")

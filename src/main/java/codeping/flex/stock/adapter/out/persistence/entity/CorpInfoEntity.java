@@ -1,9 +1,6 @@
 package codeping.flex.stock.adapter.out.persistence.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -61,4 +58,7 @@ public class CorpInfoEntity {
     @Column(name = "industry_name", length = 50)
     private String industryName;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "stock_id", referencedColumnName = "stockcode", insertable = false, updatable = false)
+    private StockEntity stock;
 }
