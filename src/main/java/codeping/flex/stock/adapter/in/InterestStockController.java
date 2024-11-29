@@ -1,8 +1,7 @@
 package codeping.flex.stock.adapter.in;
 
 import codeping.flex.stock.application.port.in.InterestStockUsecase;
-import codeping.flex.stock.application.port.in.dto.GetInterestStockInfoDto;
-import codeping.flex.stock.domain.execption.StockErrorCode;
+import codeping.flex.stock.adapter.in.dto.GetInterestStockInfoDto;
 import codeping.flex.stock.global.annotation.architecture.WebAdapter;
 import codeping.flex.stock.global.annotation.passport.Passport;
 import codeping.flex.stock.global.annotation.passport.PassportInfo;

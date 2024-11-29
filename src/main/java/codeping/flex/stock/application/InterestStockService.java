@@ -3,7 +3,7 @@ package codeping.flex.stock.application;
 import codeping.flex.stock.adapter.out.persistence.mapper.InterestStockMapper;
 import codeping.flex.stock.application.mapper.GetInterestStockDtoMapper;
 import codeping.flex.stock.application.port.in.InterestStockUsecase;
-import codeping.flex.stock.application.port.in.dto.GetInterestStockInfoDto;
+import codeping.flex.stock.adapter.in.dto.GetInterestStockInfoDto;
 import codeping.flex.stock.application.port.out.InterestStockPort;
 import codeping.flex.stock.application.port.out.LoadStockImagePort;
 import codeping.flex.stock.application.port.out.LoadStockPort;

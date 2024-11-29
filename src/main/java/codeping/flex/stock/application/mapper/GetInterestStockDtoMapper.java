@@ -1,6 +1,6 @@
 package codeping.flex.stock.application.mapper;
 
-import codeping.flex.stock.application.port.in.dto.GetInterestStockInfoDto;
+import codeping.flex.stock.adapter.in.dto.GetInterestStockInfoDto;
 import codeping.flex.stock.domain.interest.InterestStock;
 import codeping.flex.stock.domain.stockData.StockImage;
 import codeping.flex.stock.global.utils.PkEncoderUtil;

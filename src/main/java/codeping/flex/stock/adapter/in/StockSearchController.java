@@ -1,8 +1,7 @@
 package codeping.flex.stock.adapter.in;
 
-import codeping.flex.stock.application.StockSearchService;
 import codeping.flex.stock.application.port.in.StockSearchUsecase;
-import codeping.flex.stock.application.port.in.dto.GetStockAutoCompleteDto;
+import codeping.flex.stock.adapter.in.dto.GetStockAutoCompleteDto;
 import codeping.flex.stock.global.annotation.architecture.WebAdapter;
 import codeping.flex.stock.global.common.exception.ApplicationException;
 import codeping.flex.stock.global.common.response.ApplicationResponse;

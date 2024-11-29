@@ -1,4 +1,4 @@
-package codeping.flex.stock.application.port.in.dto;
+package codeping.flex.stock.adapter.in.dto;
 
 
 import io.swagger.v3.oas.annotations.media.Schema;

@@ -1,9 +1,8 @@
 package codeping.flex.stock.application;
 
-import codeping.flex.stock.adapter.out.persistence.SearchStockDocumentAdapter;
 import codeping.flex.stock.application.mapper.GetStockAutoCompleteDtoMapper;
 import codeping.flex.stock.application.port.in.StockSearchUsecase;
-import codeping.flex.stock.application.port.in.dto.GetStockAutoCompleteDto;
+import codeping.flex.stock.adapter.in.dto.GetStockAutoCompleteDto;
 import codeping.flex.stock.application.port.out.SearchStockDocumentPort;
 import codeping.flex.stock.global.annotation.architecture.ApplicationService;
 import lombok.RequiredArgsConstructor;
