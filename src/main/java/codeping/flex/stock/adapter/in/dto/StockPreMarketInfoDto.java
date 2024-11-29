@@ -1,14 +1,10 @@
 package codeping.flex.stock.adapter.in.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Builder;
-import lombok.Getter;
 
 import java.time.LocalDate;
 
-import java.time.LocalDate;
-
-public record GetStockPreMarketInfoDto(
+public record StockPreMarketInfoDto(
         StockMarketCapInfoDto marketCapInfo,
         StockOHLCVInfoDto ohlcvInfo
 ) {

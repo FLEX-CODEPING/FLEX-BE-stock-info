@@ -1,6 +1,6 @@
 package codeping.flex.stock.application.mapper;
 
-import codeping.flex.stock.adapter.in.dto.GetInterestStockInfoDto;
+import codeping.flex.stock.adapter.in.dto.InterestStockInfoDto;
 import codeping.flex.stock.domain.interest.InterestStock;
 import codeping.flex.stock.domain.stockData.StockImage;
 import codeping.flex.stock.global.utils.PkEncoderUtil;
@@ -12,7 +12,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
-public interface GetInterestStockDtoMapper {
+public interface InterestStockDtoMapper {
 
     @Mappings({
             @Mapping(target = "interestStockId", source = "interestStock.id", qualifiedByName = "encryptId"),
@@ -20,12 +20,12 @@ public interface GetInterestStockDtoMapper {
             @Mapping(target = "stockName", source = "interestStock.stockName"),
             @Mapping(target = "symbolImageUrl", source = "stockImage", qualifiedByName = "toSymbolImageUrl")
     })
-    GetInterestStockInfoDto toDto(
+    InterestStockInfoDto toDto(
             InterestStock interestStock,
             StockImage stockImage,
             @Context PkEncoderUtil pkEncoderUtil);
 
-    default List<GetInterestStockInfoDto> toDtoList(
+    default List<InterestStockInfoDto> toDtoList(
             List<InterestStock> interestStocks,
             List<StockImage> stockImages,
             @Context PkEncoderUtil pkEncoderUtil) {

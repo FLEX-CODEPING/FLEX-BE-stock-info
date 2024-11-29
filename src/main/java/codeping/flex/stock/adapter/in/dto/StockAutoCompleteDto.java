@@ -6,13 +6,11 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class GetStockSummaryInfoDto {
+public class StockAutoCompleteDto {
     @Schema(description = "종목 코드")
     private String stockcode;
     @Schema(description = "종목명")
     private String stockName;
-    @Schema(description = "로고 url")
-    private String symbolImageUrl;
-    @Schema(description = "기업 정보")
-    private GetStockCorpInfoDto corpInfo;
+    @Schema(description = "주식 시장")
+    private String market;
 }

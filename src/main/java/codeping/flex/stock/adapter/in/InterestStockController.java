@@ -1,7 +1,7 @@
 package codeping.flex.stock.adapter.in;
 
 import codeping.flex.stock.application.port.in.InterestStockUsecase;
-import codeping.flex.stock.adapter.in.dto.GetInterestStockInfoDto;
+import codeping.flex.stock.adapter.in.dto.InterestStockInfoDto;
 import codeping.flex.stock.global.annotation.architecture.WebAdapter;
 import codeping.flex.stock.global.annotation.passport.Passport;
 import codeping.flex.stock.global.annotation.passport.PassportInfo;
@@ -53,9 +53,9 @@ public class InterestStockController {
     @GetMapping()
     @Operation(summary = "관심 종목 조회", description = "관심 종목 목록을 조회합니다.")
     @ApiErrorCodes(stockErrors = {INVALID_PAGE_SIZE})
-    public ApplicationResponse<SliceResponse<GetInterestStockInfoDto>> getInterestStocks(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
-                                                                                         @Parameter(example = "0", description = "0부터 시작합니다.") @RequestParam("page") int page,
-                                                                                         @RequestParam("size") int size) {
+    public ApplicationResponse<SliceResponse<InterestStockInfoDto>> getInterestStocks(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
+                                                                                      @Parameter(example = "0", description = "0부터 시작합니다.") @RequestParam("page") int page,
+                                                                                      @RequestParam("size") int size) {
         if(size < 0 || page < 0) {throw new ApplicationException(INVALID_PAGE_SIZE);}
         return ApplicationResponse.onSuccess(interestStockUsecase.getInterestStocks(passportInfo.userId(), page, size));
     }

@@ -1,12 +1,12 @@
 package codeping.flex.stock.application;
 
+import codeping.flex.stock.adapter.in.dto.StockPreMarketInfoDto;
+import codeping.flex.stock.adapter.in.dto.StockPreOpenSummaryInfoDto;
 import codeping.flex.stock.adapter.out.persistence.entity.stockData.pk.StockIDEntity;
 import codeping.flex.stock.adapter.out.persistence.mapper.StockIDMapper;
-import codeping.flex.stock.application.mapper.GetStockInfoResponseMapper;
+import codeping.flex.stock.application.mapper.StockInfoResponseMapper;
 import codeping.flex.stock.application.port.in.StockInfoUsecase;
-import codeping.flex.stock.application.port.in.dto.GetStockPreMarketInfoDto;
-import codeping.flex.stock.application.port.in.dto.GetStockPreOpenSummaryInfoDto;
-import codeping.flex.stock.application.port.in.dto.GetStockSummaryInfoDto;
+import codeping.flex.stock.adapter.in.dto.StockSummaryInfoDto;
 import codeping.flex.stock.application.port.out.*;
 import codeping.flex.stock.domain.execption.StockErrorCode;
 import codeping.flex.stock.domain.stockData.CorpInfo;
@@ -30,21 +30,21 @@ public class StockInfoService implements StockInfoUsecase {
     private final LoadStockMarketCapPort loadStockMarketCapPort;
     private final LoadCorpInfoPort loadCorpInfoPort;
 
-    private final GetStockInfoResponseMapper getStockInfoResponseMapper;
+    private final StockInfoResponseMapper stockInfoResponseMapper;
     private final StockIDMapper stockIDMapper;
 
     @Override
-    public GetStockSummaryInfoDto getStockSummaryInfo(String stockcode) {
+    public StockSummaryInfoDto getStockSummaryInfo(String stockcode) {
         CorpInfo stockWithCorpInfo = getStockWithCorpInfo(stockcode);
-        return getStockInfoResponseMapper.toGetStockSummaryInfoDto(stockWithCorpInfo);
+        return stockInfoResponseMapper.toGetStockSummaryInfoDto(stockWithCorpInfo);
     }
 
     @Override
-    public GetStockPreOpenSummaryInfoDto getStockPreOpenSummaryInfo(String stockcode, LocalDate date) {
+    public StockPreOpenSummaryInfoDto getStockPreOpenSummaryInfo(String stockcode, LocalDate date) {
         CorpInfo corpInfo = getStockWithCorpInfo(stockcode);
         StockIDEntity stockIDEntity = stockIDMapper.toEntity(stockcode, date);
         StockOHLCV stockOHLCV = getStockOHLCV(stockIDEntity);
-        return getStockInfoResponseMapper.toGetStockSummaryPreMarketInfoDto(stockOHLCV, corpInfo, date);
+        return stockInfoResponseMapper.toGetStockSummaryPreMarketInfoDto(stockOHLCV, corpInfo, date);
     }
 
     private Stock getStock(String stockcode) {
@@ -57,23 +57,20 @@ public class StockInfoService implements StockInfoUsecase {
     }
 
     @Override
-    public GetStockPreMarketInfoDto getStockPreMarketInfo(String stockcode, LocalDate date) {
+    public StockPreMarketInfoDto getStockPreMarketInfo(String stockcode, LocalDate date) {
         StockIDEntity stockIDEntity = stockIDMapper.toEntity(stockcode, date);
         StockOHLCV stockOHLCV = getStockOHLCV(stockIDEntity);
         StockMarketCap stockMarketCap = getStockMarketCap(stockIDEntity);
-        return getStockInfoResponseMapper.toGetStockPreMarketInfoDto(stockOHLCV, stockMarketCap);
+        return stockInfoResponseMapper.toGetStockPreMarketInfoDto(stockOHLCV, stockMarketCap);
     }
 
     private StockMarketCap getStockMarketCap(StockIDEntity stockIDEntity) {
-        return loadStockMarketCapPort.loadByStockCodeAndDate(stockIDEntity).orElseThrow(
-                () -> ApplicationException.from(StockErrorCode.STOCK_MARKET_CAP_NOT_FOUND));
+        return loadStockMarketCapPort.loadByStockCodeAndDate(stockIDEntity).orElse(null);
     }
 
     private StockOHLCV getStockOHLCV(StockIDEntity stockIDEntity) {
-        StockOHLCV stockOHLCV = loadStockOHLCVPort.loadByStockCodeAndDate(stockIDEntity).orElseThrow(
-                () -> ApplicationException.from(StockErrorCode.STOCK_OHLCV_NOT_FOUND));
-        ;
-        return stockOHLCV;
+        return loadStockOHLCVPort.loadByStockCodeAndDate(stockIDEntity).orElse(null);
     }
 
 }
+

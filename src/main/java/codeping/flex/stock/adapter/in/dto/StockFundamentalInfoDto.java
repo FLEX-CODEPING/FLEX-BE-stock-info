@@ -5,5 +5,5 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class GetStockFundamentalInfoDto {
+public class StockFundamentalInfoDto {
 }
