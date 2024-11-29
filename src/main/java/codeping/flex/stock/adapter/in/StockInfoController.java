@@ -1,5 +1,6 @@
 package codeping.flex.stock.adapter.in;
 
+import codeping.flex.stock.adapter.in.dto.StockFundamentalInfoDto;
 import codeping.flex.stock.adapter.in.dto.StockPreMarketInfoDto;
 import codeping.flex.stock.adapter.in.dto.StockSummaryInfoDto;
 import codeping.flex.stock.application.port.in.StockInfoUsecase;
@@ -55,4 +56,13 @@ public class StockInfoController {
         return ApplicationResponse.onSuccess(stockInfoUsecase.getStockPreMarketInfo(stockcode, date));
     }
 
+    @GetMapping("/fundamental-data")
+    @Operation(summary = "주식 재무제표 정보", description = "전일의 재무제표 정보를 조회합니다.")
+    @ApiErrorCodes(stockErrors = {StockErrorCode.STOCK_OHLCV_NOT_FOUND})
+    public ApplicationResponse<StockFundamentalInfoDto> getStockFundamentalInfo(@Parameter(hidden = true) @Passport PassportInfo passportInfo,
+                                                                                @RequestParam("stockcode") String stockcode,
+                                                                                @Parameter(description = "yyyy-MM-dd") @RequestParam("date")
+                                                                               @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
+        return ApplicationResponse.onSuccess(stockInfoUsecase.getStockFundamentalInfo(stockcode, date));
+    }
 }

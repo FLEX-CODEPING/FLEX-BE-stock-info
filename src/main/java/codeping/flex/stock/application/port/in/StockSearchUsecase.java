@@ -1,11 +1,11 @@
 package codeping.flex.stock.application.port.in;
 
-import codeping.flex.stock.application.port.in.dto.GetStockAutoCompleteDto;
+import codeping.flex.stock.adapter.in.dto.StockAutoCompleteDto;
 
 import java.util.List;
 
 public interface StockSearchUsecase {
 
-    List<GetStockAutoCompleteDto> getAutoCompleteStocks(String prefix, int size);
-    List<GetStockAutoCompleteDto> getAutoCompleteStocks(String searchType, String prefix, int size);
+    List<StockAutoCompleteDto> getAutoCompleteStocks(String prefix, int size);
+    List<StockAutoCompleteDto> getAutoCompleteStocks(String searchType, String prefix, int size);
 }
