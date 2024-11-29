@@ -22,7 +22,7 @@ public interface StockInfoResponseMapper {
     @Mapping(target = "stockcode", source = "stockWithCorpInfo.stock.stockcode")
     @Mapping(target = "stockName", source = "stockWithCorpInfo.stock.stockName")
     @Mapping(target = "symbolImageUrl", source = "stockWithCorpInfo.stock.imageUrl")
-    @Mapping(target = "market", source = "stockWithCorpInfo.stock.market")
+    @Mapping(target = "market", expression = "java(stockWithCorpInfo.stock().getFormattedMarket())")
     @Mapping(target = "corpInfo", source = "stockWithCorpInfo")
     StockSummaryInfoDto toGetStockSummaryInfoDto(CorpInfo stockWithCorpInfo);
 
@@ -32,7 +32,7 @@ public interface StockInfoResponseMapper {
     @Mapping(target = "stockcode", source = "stockWithCorpInfo.stock.stockcode")
     @Mapping(target = "stockName", source = "stockWithCorpInfo.stock.stockName")
     @Mapping(target = "symbolImageUrl", source = "stockWithCorpInfo.stock.imageUrl")
-    @Mapping(target = "market", source = "stockWithCorpInfo.stock.market")
+    @Mapping(target = "market", expression = "java(stockWithCorpInfo.stock().getFormattedMarket())")
     @Mapping(target = "closePrice", source = "stockOHLCV.closePrice")
     @Mapping(target = "volume", source = "stockOHLCV.volume")
     @Mapping(target = "changeRate", source = "stockOHLCV.changeRate")
