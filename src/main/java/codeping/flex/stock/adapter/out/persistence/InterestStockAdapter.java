@@ -1,10 +1,10 @@
 package codeping.flex.stock.adapter.out.persistence;
 
-import codeping.flex.stock.adapter.out.persistence.entity.InterestStockEntity;
+import codeping.flex.stock.adapter.out.persistence.entity.interest.InterestStockEntity;
 import codeping.flex.stock.adapter.out.persistence.mapper.InterestStockMapper;
 import codeping.flex.stock.adapter.out.persistence.repository.InterestStockRepository;
 import codeping.flex.stock.application.port.out.InterestStockPort;
-import codeping.flex.stock.domain.InterestStock;
+import codeping.flex.stock.domain.interest.InterestStock;
 import codeping.flex.stock.global.annotation.architecture.PersistenceAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

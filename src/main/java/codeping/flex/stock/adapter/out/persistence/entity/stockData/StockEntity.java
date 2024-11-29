@@ -1,4 +1,4 @@
-package codeping.flex.stock.adapter.out.persistence.entity;
+package codeping.flex.stock.adapter.out.persistence.entity.stockData;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,12 +11,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "stock_image")
-public class StockImageEntity {
-
+@Table(name = "stock")
+public class StockEntity {
     @Id
     @Column(length = 50)
     private String stockcode;
+
+    @Column(length = 50)
+    private String stockName;
+
+    @Column(length = 50)
+    private String market;
 
     @Column
     private String imageUrl;

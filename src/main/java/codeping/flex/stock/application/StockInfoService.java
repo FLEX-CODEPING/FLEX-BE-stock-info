@@ -1,6 +1,6 @@
 package codeping.flex.stock.application;
 
-import codeping.flex.stock.adapter.out.persistence.entity.pk.StockIDEntity;
+import codeping.flex.stock.adapter.out.persistence.entity.stockData.pk.StockIDEntity;
 import codeping.flex.stock.adapter.out.persistence.mapper.StockIDMapper;
 import codeping.flex.stock.application.mapper.GetStockInfoResponseMapper;
 import codeping.flex.stock.application.port.in.StockInfoUsecase;
@@ -8,8 +8,11 @@ import codeping.flex.stock.application.port.in.dto.GetStockPreMarketInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockPreOpenSummaryInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockSummaryInfoDto;
 import codeping.flex.stock.application.port.out.*;
-import codeping.flex.stock.domain.*;
 import codeping.flex.stock.domain.execption.StockErrorCode;
+import codeping.flex.stock.domain.stockData.CorpInfo;
+import codeping.flex.stock.domain.stockData.Stock;
+import codeping.flex.stock.domain.stockData.StockMarketCap;
+import codeping.flex.stock.domain.stockData.StockOHLCV;
 import codeping.flex.stock.global.annotation.architecture.ApplicationService;
 import codeping.flex.stock.global.common.exception.ApplicationException;
 import lombok.RequiredArgsConstructor;

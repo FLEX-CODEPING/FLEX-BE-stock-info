@@ -3,7 +3,7 @@ package codeping.flex.stock.adapter.out.persistence;
 import codeping.flex.stock.adapter.out.persistence.mapper.CorpInfoMapper;
 import codeping.flex.stock.adapter.out.persistence.repository.CorpInfoRepository;
 import codeping.flex.stock.application.port.out.LoadCorpInfoPort;
-import codeping.flex.stock.domain.CorpInfo;
+import codeping.flex.stock.domain.stockData.CorpInfo;
 import codeping.flex.stock.global.annotation.architecture.PersistenceAdapter;
 import lombok.RequiredArgsConstructor;
 

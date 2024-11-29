@@ -1,6 +1,6 @@
-package codeping.flex.stock.adapter.out.persistence.entity;
+package codeping.flex.stock.adapter.out.persistence.entity.stockData;
 
-import codeping.flex.stock.adapter.out.persistence.entity.pk.StockIDEntity;
+import codeping.flex.stock.adapter.out.persistence.entity.stockData.pk.StockIDEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;

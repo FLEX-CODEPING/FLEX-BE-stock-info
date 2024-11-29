@@ -1,6 +1,6 @@
 package codeping.flex.stock.adapter.out.persistence.repository;
 
-import codeping.flex.stock.adapter.out.persistence.entity.InterestStockEntity;
+import codeping.flex.stock.adapter.out.persistence.entity.interest.InterestStockEntity;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;

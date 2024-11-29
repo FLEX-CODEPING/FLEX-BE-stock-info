@@ -1,8 +1,8 @@
 package codeping.flex.stock.adapter.out.persistence.mapper;
 
-import codeping.flex.stock.adapter.out.persistence.entity.StockImageEntity;
+import codeping.flex.stock.adapter.out.persistence.entity.stockData.StockImageEntity;
 import codeping.flex.stock.adapter.out.persistence.mapper.common.ReadOnlyEntityMapper;
-import codeping.flex.stock.domain.StockImage;
+import codeping.flex.stock.domain.stockData.StockImage;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

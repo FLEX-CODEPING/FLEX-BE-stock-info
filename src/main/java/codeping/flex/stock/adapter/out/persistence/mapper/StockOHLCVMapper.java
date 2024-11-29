@@ -1,8 +1,8 @@
 package codeping.flex.stock.adapter.out.persistence.mapper;
 
-import codeping.flex.stock.adapter.out.persistence.entity.StockOHLCVEntity;
+import codeping.flex.stock.adapter.out.persistence.entity.stockData.StockOHLCVEntity;
 import codeping.flex.stock.adapter.out.persistence.mapper.common.ReadOnlyEntityMapper;
-import codeping.flex.stock.domain.StockOHLCV;
+import codeping.flex.stock.domain.stockData.StockOHLCV;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

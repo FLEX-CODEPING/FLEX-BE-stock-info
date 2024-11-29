@@ -1,11 +1,10 @@
-package codeping.flex.stock.adapter.out.persistence.entity;
+package codeping.flex.stock.adapter.out.persistence.entity.stockData;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDate;
 

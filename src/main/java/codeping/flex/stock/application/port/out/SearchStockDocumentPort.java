@@ -1,6 +1,6 @@
 package codeping.flex.stock.application.port.out;
 
-import codeping.flex.stock.domain.StockDocumentDomain;
+import codeping.flex.stock.domain.stockData.StockDocumentDomain;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package codeping.flex.stock.domain;
+package codeping.flex.stock.domain.stockData;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,12 +7,9 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @Builder
-public final class Stock {
+public final class StockImage {
+
     private String stockcode;
-
-    private String stockName;
-
-    private String market;
 
     private String imageUrl;
 }

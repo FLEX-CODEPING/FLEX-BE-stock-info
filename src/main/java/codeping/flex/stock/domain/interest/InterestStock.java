@@ -1,4 +1,4 @@
-package codeping.flex.stock.domain;
+package codeping.flex.stock.domain.interest;
 
 import lombok.AccessLevel;
 import lombok.Builder;

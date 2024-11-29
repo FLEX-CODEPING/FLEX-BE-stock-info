@@ -1,6 +1,6 @@
 package codeping.flex.stock.adapter.out.persistence.repository;
 
-import codeping.flex.stock.adapter.out.persistence.entity.StockEntity;
+import codeping.flex.stock.adapter.out.persistence.entity.stockData.StockEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

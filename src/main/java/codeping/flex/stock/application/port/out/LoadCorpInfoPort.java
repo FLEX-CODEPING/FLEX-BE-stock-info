@@ -1,6 +1,6 @@
 package codeping.flex.stock.application.port.out;
 
-import codeping.flex.stock.domain.CorpInfo;
+import codeping.flex.stock.domain.stockData.CorpInfo;
 
 import java.util.Optional;
 

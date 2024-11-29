@@ -1,6 +1,6 @@
 package codeping.flex.stock.adapter.out.persistence.mapper;
 
-import codeping.flex.stock.domain.StockDocumentDomain;
+import codeping.flex.stock.domain.stockData.StockDocumentDomain;
 import codeping.flex.stock.infrastructure.elasticsearch.document.StockDocument;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

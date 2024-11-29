@@ -1,6 +1,6 @@
 package codeping.flex.stock.application.port.out;
 
-import codeping.flex.stock.domain.InterestStock;
+import codeping.flex.stock.domain.interest.InterestStock;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 

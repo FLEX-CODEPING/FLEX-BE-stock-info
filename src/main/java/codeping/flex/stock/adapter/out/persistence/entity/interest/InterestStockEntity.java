@@ -1,4 +1,4 @@
-package codeping.flex.stock.adapter.out.persistence.entity;
+package codeping.flex.stock.adapter.out.persistence.entity.interest;
 
 import codeping.flex.stock.adapter.out.persistence.entity.common.BaseTimeEntity;
 import jakarta.persistence.*;

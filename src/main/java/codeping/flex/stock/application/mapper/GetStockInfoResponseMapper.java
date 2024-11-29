@@ -4,11 +4,12 @@ import codeping.flex.stock.application.port.in.dto.GetStockCorpInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockPreMarketInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockPreOpenSummaryInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockSummaryInfoDto;
-import codeping.flex.stock.domain.*;
 
+import codeping.flex.stock.domain.stockData.CorpInfo;
+import codeping.flex.stock.domain.stockData.StockMarketCap;
+import codeping.flex.stock.domain.stockData.StockOHLCV;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 
 import java.time.LocalDate;
 

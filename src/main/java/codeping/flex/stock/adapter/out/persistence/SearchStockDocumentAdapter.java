@@ -2,8 +2,7 @@ package codeping.flex.stock.adapter.out.persistence;
 
 import codeping.flex.stock.adapter.out.persistence.mapper.StockDocumentMapper;
 import codeping.flex.stock.application.port.out.SearchStockDocumentPort;
-import codeping.flex.stock.domain.Stock;
-import codeping.flex.stock.domain.StockDocumentDomain;
+import codeping.flex.stock.domain.stockData.StockDocumentDomain;
 import codeping.flex.stock.global.annotation.architecture.PersistenceAdapter;
 import codeping.flex.stock.infrastructure.elasticsearch.repository.StockDocumentRepository;
 import lombok.RequiredArgsConstructor;

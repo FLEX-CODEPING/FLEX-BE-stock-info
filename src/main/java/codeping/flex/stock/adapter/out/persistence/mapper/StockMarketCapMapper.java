@@ -1,8 +1,8 @@
 package codeping.flex.stock.adapter.out.persistence.mapper;
 
-import codeping.flex.stock.adapter.out.persistence.entity.StockMarketCapEntity;
+import codeping.flex.stock.adapter.out.persistence.entity.stockData.StockMarketCapEntity;
 import codeping.flex.stock.adapter.out.persistence.mapper.common.ReadOnlyEntityMapper;
-import codeping.flex.stock.domain.StockMarketCap;
+import codeping.flex.stock.domain.stockData.StockMarketCap;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

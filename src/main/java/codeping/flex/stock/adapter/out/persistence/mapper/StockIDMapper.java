@@ -1,7 +1,7 @@
 package codeping.flex.stock.adapter.out.persistence.mapper;
 
-import codeping.flex.stock.adapter.out.persistence.entity.pk.StockIDEntity;
-import codeping.flex.stock.domain.StockID;
+import codeping.flex.stock.adapter.out.persistence.entity.stockData.pk.StockIDEntity;
+import codeping.flex.stock.domain.stockData.StockID;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
