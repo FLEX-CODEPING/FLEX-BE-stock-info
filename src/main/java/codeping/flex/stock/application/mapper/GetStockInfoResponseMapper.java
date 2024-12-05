@@ -18,23 +18,21 @@ public interface GetStockInfoResponseMapper {
     /**
      * 장 중 시간대의 주식 기본 정보 dto mapper
      */
-    @Mapping(target = "stockcode", source = "stockWithCorpInfo.stock.stockcode")
-    @Mapping(target = "stockName", source = "stockWithCorpInfo.stock.stockName")
-    @Mapping(target = "symbolImageUrl", source = "stockWithCorpInfo.stock.imageUrl")
-    @Mapping(target = "corpInfo", source = "stockWithCorpInfo")
-    GetStockSummaryInfoDto toGetStockSummaryInfoDto(CorpInfo stockWithCorpInfo);
+    @Mapping(target = "stockcode", source = "stock.stockcode")
+    @Mapping(target = "stockName", source = "stock.stockName")
+    @Mapping(target = "symbolImageUrl", source = "stock.imageUrl")
+    GetStockSummaryInfoDto toGetStockSummaryInfoDto(Stock stock);
 
     /**
      * 장 외 시간대의 주식 기본 정보 dto mapper
      */
-    @Mapping(target = "stockcode", source = "stockWithCorpInfo.stock.stockcode")
-    @Mapping(target = "stockName", source = "stockWithCorpInfo.stock.stockName")
-    @Mapping(target = "symbolImageUrl", source = "stockWithCorpInfo.stock.imageUrl")
+    @Mapping(target = "stockcode", source = "stock.stockcode")
+    @Mapping(target = "stockName", source = "stock.stockName")
+    @Mapping(target = "symbolImageUrl", source = "stock.imageUrl")
     @Mapping(target = "closePrice", source = "stockOHLCV.closePrice")
     @Mapping(target = "volume", source = "stockOHLCV.volume")
     @Mapping(target = "changeRate", source = "stockOHLCV.changeRate")
-    @Mapping(target = "corpInfo", source = "stockWithCorpInfo")
-    GetStockPreOpenSummaryInfoDto toGetStockSummaryPreMarketInfoDto(StockOHLCV stockOHLCV, CorpInfo stockWithCorpInfo, LocalDate date);
+    GetStockPreOpenSummaryInfoDto toGetStockSummaryPreMarketInfoDto(StockOHLCV stockOHLCV, Stock stock, LocalDate date);
 
     @Mapping(target = "ohlcvInfo", source = "stockOHLCV")
     @Mapping(target = "marketCapInfo", source = "stockMarketCap")
