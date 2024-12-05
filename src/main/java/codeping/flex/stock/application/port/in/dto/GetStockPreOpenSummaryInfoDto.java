@@ -15,8 +15,6 @@ public class GetStockPreOpenSummaryInfoDto {
     private String stockName;
     @Schema(description = "로고 url")
     private String symbolImageUrl;
-    @Schema(description = "기업 정보")
-    private GetStockCorpInfoDto corpInfo;
     @Schema(description = "기준일")
     private LocalDate date;
     @Schema(description = "종가")
