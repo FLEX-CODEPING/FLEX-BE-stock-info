@@ -13,6 +13,4 @@ public class GetStockSummaryInfoDto {
     private String stockName;
     @Schema(description = "로고 url")
     private String symbolImageUrl;
-    @Schema(description = "기업 정보")
-    private GetStockCorpInfoDto corpInfo;
 }

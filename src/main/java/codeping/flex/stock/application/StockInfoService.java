@@ -4,6 +4,7 @@ import codeping.flex.stock.adapter.out.persistence.entity.pk.StockIDEntity;
 import codeping.flex.stock.adapter.out.persistence.mapper.StockIDMapper;
 import codeping.flex.stock.application.mapper.GetStockInfoResponseMapper;
 import codeping.flex.stock.application.port.in.StockInfoUsecase;
+import codeping.flex.stock.application.port.in.dto.GetStockCorpInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockPreMarketInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockPreOpenSummaryInfoDto;
 import codeping.flex.stock.application.port.in.dto.GetStockSummaryInfoDto;
@@ -32,16 +33,22 @@ public class StockInfoService implements StockInfoUsecase {
 
     @Override
     public GetStockSummaryInfoDto getStockSummaryInfo(String stockcode) {
-        CorpInfo stockWithCorpInfo = getStockWithCorpInfo(stockcode);
-        return getStockInfoResponseMapper.toGetStockSummaryInfoDto(stockWithCorpInfo);
+        Stock stockInfo = getStock(stockcode);
+        return getStockInfoResponseMapper.toGetStockSummaryInfoDto(stockInfo);
     }
 
     @Override
     public GetStockPreOpenSummaryInfoDto getStockPreOpenSummaryInfo(String stockcode, LocalDate date) {
-        CorpInfo corpInfo = getStockWithCorpInfo(stockcode);
+        Stock stockInfo = getStock(stockcode);
         StockIDEntity stockIDEntity = stockIDMapper.toEntity(stockcode, date);
         StockOHLCV stockOHLCV = getStockOHLCV(stockIDEntity);
-        return getStockInfoResponseMapper.toGetStockSummaryPreMarketInfoDto(stockOHLCV, corpInfo, date);
+        return getStockInfoResponseMapper.toGetStockSummaryPreMarketInfoDto(stockOHLCV, stockInfo, date);
+    }
+
+    @Override
+    public GetStockCorpInfoDto getStockCorpInfo(String stockcode) {
+        CorpInfo corpInfo = getCorpInfo(stockcode);
+        return getStockInfoResponseMapper.toGetStockCorpInfoDto(corpInfo);
     }
 
     private Stock getStock(String stockcode) {
@@ -49,7 +56,7 @@ public class StockInfoService implements StockInfoUsecase {
                 ApplicationException.from(StockErrorCode.STOCK_NOT_FOUND));
     }
 
-    private CorpInfo getStockWithCorpInfo(String stockcode) {
+    private CorpInfo getCorpInfo(String stockcode) {
         return loadCorpInfoPort.loadByStockcode(stockcode).orElse(null);
     }
 

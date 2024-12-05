@@ -9,6 +9,5 @@ import java.util.Optional;
 
 public interface CorpInfoRepository extends JpaRepository<CorpInfoEntity, String> {
 
-    @Query("SELECT ci FROM CorpInfoEntity ci LEFT JOIN FETCH ci.stock WHERE ci.stockcode = :stockcode")
     Optional<CorpInfoEntity> findByStockcode(@Param("stockcode") String stockcode);
 }
