@@ -16,6 +16,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/stocks/image-url")
@@ -26,7 +27,7 @@ public class StockImageController {
 
 
     @GetMapping("")
-    @Operation(summary = "주식 이미지 조회", description = "주식 회사 이미지 정보를 반환합니다.")
+    @Operation(summary = "주식 이미지 조회", description = "주식 회사 이미지 정보를 반환합니다.", hidden = true)
     @ApiErrorCodes(stockErrors = {StockErrorCode.STOCK_NOT_FOUND})
     public Mono<List<GetStockImageDto>> getStockImages(@RequestParam(name = "stockcodes") List<String> stockcodes) {
         return Mono.fromCallable(() -> stockImageUsecase.getStockImageUrls(stockcodes))
