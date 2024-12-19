@@ -22,10 +22,45 @@ server:
 
 ---
 spring.config.activate.on-profile: local
-
+spring:
+  config:
+    import:
+      - eureka.yml
+      - env.properties
+  cloud:
+    kubernetes:
+      config:
+        enabled: false
+logging:
+  level:
+    root: INFO
+    com.netflix.discovery: DEBUG
 ---
 spring.config.activate.on-profile: dev
+spring:
+  config:
+    import:
+      - eureka.yml
+  cloud:
+    kubernetes:
+      config:
+        enabled: false
+logging:
+  level:
+    root: INFO
+    com.netflix.discovery: DEBUG
+    org.springframework.cloud.netflix.eureka: DEBUG
 
 ---
 spring.config.activate.on-profile: prod
+spring:
+  cloud:
+    kubernetes:
+      discovery:
+        enabled: true
+        all-namespaces: true
+
+eureka:
+  client:
+    enabled: false
 
