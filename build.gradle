@@ -44,7 +44,25 @@ dependencies {
     // Webflux
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
+    //Eureka
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+    // MapStruct
+    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+
+    // Elasticsearch
+    implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+    implementation 'co.elastic.clients:elasticsearch-java:8.10.4'
+
+    implementation 'org.flywaydb:flyway-mysql'
+    implementation 'org.flywaydb:flyway-core'
+
+    // Kubernetes
+    implementation 'org.springframework.cloud:spring-cloud-starter-kubernetes-client'
+
+    // Spring actuator
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
 ext {
@@ -60,3 +78,8 @@ dependencyManagement {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-parameters"
+}
+

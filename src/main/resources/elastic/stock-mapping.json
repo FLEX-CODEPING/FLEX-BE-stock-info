@@ -1,0 +1,20 @@
+{
+  "properties": {
+    "stockcode": {
+      "type": "completion",
+      "index_prefixes": {
+        "min_chars": 1,
+        "max_chars": 6
+      }
+    },
+    "corp_name": {
+      "type": "completion",
+      "analyzer": "my-nori-analyzer"
+    },
+    "market": {
+      "type": "text",
+      "analyzer": "my-nori-analyzer"
+    }
+  }
+}
+
